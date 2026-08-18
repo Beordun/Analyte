@@ -1,0 +1,320 @@
+/**
+ * tokens/typography.css
+ *
+ * Generated from design-tokens.tokens.json
+ * Source: Roboto type scale — 15 roles across Display, Headline, Title, Body, Label.
+ *
+ * USAGE
+ * ─────
+ * 1. Custom properties  →  var(--type-display-large-size), etc.
+ * 2. Utility classes    →  class="type-display-large", etc.
+ *
+ * Units: All dimensions converted to REM (base 16px).
+ *   px ÷ 16 = rem
+ * Letter-spacing values are negative (optical tightening per role).
+ *
+ * Spacing: 4-point grid — all spacing is a multiple of 0.25rem (4px).
+ */
+
+/* ─────────────────────────────────────────────────────────────
+   TOKEN VARIABLES  (in :root for global scope)
+───────────────────────────────────────────────────────────── */
+
+:root {
+
+  /* ── Base ────────────────────────────────────────────────── */
+  --type-font-family-base: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --type-base-size: 1rem; /* 16px */
+
+  /* ── 4-Point Spacing Scale ───────────────────────────────── */
+  --space-1:  0.25rem;   /*  4px */
+  --space-2:  0.5rem;    /*  8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+
+  /* ── Display Scale ─────────────────────────────────────── */
+
+  /* Display Large  62px → 3.875rem / lh 86.8px → 5.425rem */
+  --type-display-large-size:           3.875rem;
+  --type-display-large-line-height:    5.425rem;
+  --type-display-large-letter-spacing: -0.136rem;
+  --type-display-large-weight:         400;
+
+  /* Display Medium  50px → 3.125rem / lh 75px → 4.688rem */
+  --type-display-medium-size:           3.125rem;
+  --type-display-medium-line-height:    4.688rem;
+  --type-display-medium-letter-spacing: -0.109rem;
+  --type-display-medium-weight:         400;
+
+  /* Display Small  40px → 2.5rem / lh 60px → 3.75rem */
+  --type-display-small-size:           2.5rem;
+  --type-display-small-line-height:    3.75rem;
+  --type-display-small-letter-spacing: -0.063rem;
+  --type-display-small-weight:         400;
+
+  /* ── Headline Scale ─────────────────────────────────────── */
+
+  /* Headline Large  32px → 2rem / lh 48px → 3rem */
+  --type-headline-large-size:           2rem;
+  --type-headline-large-line-height:    3rem;
+  --type-headline-large-letter-spacing: -0.05rem;
+  --type-headline-large-weight:         500;
+
+  /* Headline Medium  28px → 1.75rem / lh 42px → 2.625rem */
+  --type-headline-medium-size:           1.75rem;
+  --type-headline-medium-line-height:    2.625rem;
+  --type-headline-medium-letter-spacing: -0.035rem;
+  --type-headline-medium-weight:         400;
+
+  /* Headline Small  24px → 1.5rem / lh 36px → 2.25rem */
+  --type-headline-small-size:           1.5rem;
+  --type-headline-small-line-height:    2.25rem;
+  --type-headline-small-letter-spacing: -0.023rem;
+  --type-headline-small-weight:         400;
+
+  /* ── Title Scale ────────────────────────────────────────── */
+
+  /* Title Large  24px → 1.5rem / lh 36px → 2.25rem (weight 500) */
+  --type-title-large-size:           1.5rem;
+  --type-title-large-line-height:    2.25rem;
+  --type-title-large-letter-spacing: -0.038rem;
+  --type-title-large-weight:         500;
+
+  /* Title Medium  18px → 1.125rem / lh 27px → 1.688rem */
+  --type-title-medium-size:           1.125rem;
+  --type-title-medium-line-height:    1.688rem;
+  --type-title-medium-letter-spacing: -0.023rem;
+  --type-title-medium-weight:         400;
+
+  /* Title Small  16px → 1rem / lh 24px → 1.5rem */
+  --type-title-small-size:           1rem;
+  --type-title-small-line-height:    1.5rem;
+  --type-title-small-letter-spacing: -0.015rem;
+  --type-title-small-weight:         400;
+
+  /* ── Body Scale ─────────────────────────────────────────── */
+
+  /* Body Large  18px → 1.125rem / lh 27px → 1.688rem */
+  --type-body-large-size:           1.125rem;
+  --type-body-large-line-height:    1.688rem;
+  --type-body-large-letter-spacing: -0.028rem;
+  --type-body-large-weight:         400;
+
+  /* Body Medium  16px → 1rem / lh 24px → 1.5rem  (default) */
+  --type-body-medium-size:           1rem;
+  --type-body-medium-line-height:    1.5rem;
+  --type-body-medium-letter-spacing: -0.02rem;
+  --type-body-medium-weight:         400;
+
+  /* Body Small  14px → 0.875rem / lh 21px → 1.313rem */
+  --type-body-small-size:           0.875rem;
+  --type-body-small-line-height:    1.313rem;
+  --type-body-small-letter-spacing: -0.013rem;
+  --type-body-small-weight:         400;
+
+  /* ── Label Scale ────────────────────────────────────────── */
+
+  /* Label Large  14px → 0.875rem / lh 19.6px → 1.225rem */
+  --type-label-large-size:           0.875rem;
+  --type-label-large-line-height:    1.225rem;
+  --type-label-large-letter-spacing: -0.009rem;
+  --type-label-large-weight:         400;
+
+  /* Label Medium  12px → 0.75rem / lh 18px → 1.125rem */
+  --type-label-medium-size:           0.75rem;
+  --type-label-medium-line-height:    1.125rem;
+  --type-label-medium-letter-spacing: -0.006rem;
+  --type-label-medium-weight:         400;
+
+  /* Label Small  11px → 0.688rem / lh 16.5px → 1.031rem */
+  --type-label-small-size:           0.688rem;
+  --type-label-small-line-height:    1.031rem;
+  --type-label-small-letter-spacing: -0.003rem;
+  --type-label-small-weight:         400;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   UTILITY CLASSES
+───────────────────────────────────────────────────────────── */
+
+.type-display-large {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-display-large-size);
+  line-height:     var(--type-display-large-line-height);
+  letter-spacing:  var(--type-display-large-letter-spacing);
+  font-weight:     var(--type-display-large-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-display-medium {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-display-medium-size);
+  line-height:     var(--type-display-medium-line-height);
+  letter-spacing:  var(--type-display-medium-letter-spacing);
+  font-weight:     var(--type-display-medium-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-display-small {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-display-small-size);
+  line-height:     var(--type-display-small-line-height);
+  letter-spacing:  var(--type-display-small-letter-spacing);
+  font-weight:     var(--type-display-small-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-headline-large {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-headline-large-size);
+  line-height:     var(--type-headline-large-line-height);
+  letter-spacing:  var(--type-headline-large-letter-spacing);
+  font-weight:     var(--type-headline-large-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-headline-medium {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-headline-medium-size);
+  line-height:     var(--type-headline-medium-line-height);
+  letter-spacing:  var(--type-headline-medium-letter-spacing);
+  font-weight:     var(--type-headline-medium-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-headline-small {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-headline-small-size);
+  line-height:     var(--type-headline-small-line-height);
+  letter-spacing:  var(--type-headline-small-letter-spacing);
+  font-weight:     var(--type-headline-small-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-title-large {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-title-large-size);
+  line-height:     var(--type-title-large-line-height);
+  letter-spacing:  var(--type-title-large-letter-spacing);
+  font-weight:     var(--type-title-large-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-title-medium {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-title-medium-size);
+  line-height:     var(--type-title-medium-line-height);
+  letter-spacing:  var(--type-title-medium-letter-spacing);
+  font-weight:     var(--type-title-medium-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-title-small {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-title-small-size);
+  line-height:     var(--type-title-small-line-height);
+  letter-spacing:  var(--type-title-small-letter-spacing);
+  font-weight:     var(--type-title-small-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-body-large {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-body-large-size);
+  line-height:     var(--type-body-large-line-height);
+  letter-spacing:  var(--type-body-large-letter-spacing);
+  font-weight:     var(--type-body-large-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-body-medium {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-body-medium-size);
+  line-height:     var(--type-body-medium-line-height);
+  letter-spacing:  var(--type-body-medium-letter-spacing);
+  font-weight:     var(--type-body-medium-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-body-small {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-body-small-size);
+  line-height:     var(--type-body-small-line-height);
+  letter-spacing:  var(--type-body-small-letter-spacing);
+  font-weight:     var(--type-body-small-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-label-large {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-label-large-size);
+  line-height:     var(--type-label-large-line-height);
+  letter-spacing:  var(--type-label-large-letter-spacing);
+  font-weight:     var(--type-label-large-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-label-medium {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-label-medium-size);
+  line-height:     var(--type-label-medium-line-height);
+  letter-spacing:  var(--type-label-medium-letter-spacing);
+  font-weight:     var(--type-label-medium-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+.type-label-small {
+  font-family:     var(--type-font-family-base);
+  font-size:       var(--type-label-small-size);
+  line-height:     var(--type-label-small-line-height);
+  letter-spacing:  var(--type-label-small-letter-spacing);
+  font-weight:     var(--type-label-small-weight);
+  font-style:      normal;
+  text-decoration: none;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   QUICK REFERENCE  (base 16px → rem)
+   ─────────────────────────────────────────────────────────
+   Role               px → rem    Weight   LH rem    LS rem
+   ─────────────────  ──────────  ───────  ────────  ────────
+   display-large      62 → 3.875  400      5.425     -0.136
+   display-medium     50 → 3.125  400      4.688     -0.109
+   display-small      40 → 2.5    400      3.75      -0.063
+   headline-large     32 → 2      500      3         -0.05
+   headline-medium    28 → 1.75   400      2.625     -0.035
+   headline-small     24 → 1.5    400      2.25      -0.023
+   title-large        24 → 1.5    500      2.25      -0.038
+   title-medium       18 → 1.125  400      1.688     -0.023
+   title-small        16 → 1      400      1.5       -0.015
+   body-large         18 → 1.125  400      1.688     -0.028
+   body-medium        16 → 1      400      1.5       -0.02
+   body-small         14 → 0.875  400      1.313     -0.013
+   label-large        14 → 0.875  400      1.225     -0.009
+   label-medium       12 → 0.75   400      1.125     -0.006
+   label-small        11 → 0.688  400      1.031     -0.003
+───────────────────────────────────────────────────────────── */

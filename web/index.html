@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom Drive Test Audit Suite | 2G, 3G, 4G Benchmark Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/tokens/typography.css">
+    <link rel="stylesheet" href="/web/index.css">
+    <!-- Chart.js for Visuals & Marked for Reports -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- SheetJS (xlsx) and JSZip for Direct In-Browser Drag & Drop Processing -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip/dist/jszip.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                        <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h2>RNO-Optima AI</h2>
+                    <span>Drive Test RAG & Tables</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="exact-tables">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                    2G / 3G / 4G Tables
+                </button>
+                <button class="nav-item" data-tab="upload-zone">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    Upload Excel Logs
+                </button>
+                <button class="nav-item" data-tab="rag-report">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Senior RNO Report
+                </button>
+                <button class="nav-item" data-tab="benchmarks">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    Visual Progression
+                </button>
+                <button class="nav-item" data-tab="playbooks">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path></svg>
+                    RCA & Playbooks
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="cluster-badge">
+                    <span class="status-dot online"></span>
+                    <div>
+                        <strong>Cluster: KUBWA</strong>
+                        <small id="sidebar-loaded-info">22 TEMS Sheets Active</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-title">
+                    <h1 id="page-title">Drive Test Benchmark & Optimization Hub</h1>
+                    <p id="page-subtitle">Exact 2G/3G/4G RF Tables Calculation + Free/Budget Hybrid RAG</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="document.querySelector('.nav-item[data-tab=\'upload-zone\']').click()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        Upload New Excel
+                    </button>
+                    <button class="btn btn-primary" onclick="document.querySelector('.nav-item[data-tab=\'rag-report\']').click()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        Generate RNO Report
+                    </button>
+                </div>
+            </header>
+
+            <!-- TAB 1: EXACT 2G, 3G, 4G BENCHMARK TABLES -->
+            <section id="tab-exact-tables" class="tab-pane active">
+                <!-- Alert Banner for Worst Performer -->
+                <div class="alert-card alert-danger" id="worst-op-banner">
+                    <div class="alert-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    </div>
+                    <div class="alert-body">
+                        <h3>Critical Event Summary: Worst-Performing Operator</h3>
+                        <p id="worst-op-desc"><strong>AIRTEL</strong> ranks as the worst-performing network provider in Kubwa (78.65% compliance), suffering from severe 4G LTE coverage craters (44.3% fail) and RSRQ interference degradation (49.6% fail).</p>
+                    </div>
+                    <div class="alert-tag" id="worst-op-tag">
+                        AIRTEL (78.65%)
+                    </div>
+                </div>
+
+                <!-- 1. 2G TABLE -->
+                <div class="card-panel">
+                    <div class="panel-header">
+                        <div class="table-title-box">
+                            <span class="tech-pill tech-2g">2G GSM</span>
+                            <h3>2G Drive Test Coverage & Quality Benchmark Table</h3>
+                        </div>
+                        <span class="badge badge-info">RxLevel & RxQual Metrics</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="styled-table telecom-grid-table" id="table-2g-grid">
+                            <!-- Populated dynamically by app.js -->
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 2. 3G TABLE -->
+                <div class="card-panel mt-4">
+                    <div class="panel-header">
+                        <div class="table-title-box">
+                            <span class="tech-pill tech-3g">3G UMTS</span>
+                            <h3>3G Drive Test Coverage Reliability & Quality Benchmark Table</h3>
+                        </div>
+                        <span class="badge badge-info">RSCP & Ec/No Metrics</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="styled-table telecom-grid-table" id="table-3g-grid">
+                            <!-- Populated dynamically by app.js -->
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 3. 4G TABLE -->
+                <div class="card-panel mt-4">
+                    <div class="panel-header">
+                        <div class="table-title-box">
+                            <span class="tech-pill tech-4g">4G LTE</span>
+                            <h3>4G LTE Drive Test Coverage & Quality Benchmark Table</h3>
+                        </div>
+                        <span class="badge badge-info">RSRP & RSRQ Metrics</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="styled-table telecom-grid-table" id="table-4g-grid">
+                            <!-- Populated dynamically by app.js -->
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: EXCEL UPLOAD ZONE -->
+            <section id="tab-upload-zone" class="tab-pane">
+                <div class="card-panel">
+                    <div class="panel-header">
+                        <h3>Upload Drive Test Excel Files (.xlsx / .csv)</h3>
+                        <span class="badge badge-info">TEMS & NEMO Export Formats</span>
+                    </div>
+                    <p class="text-secondary" style="font-size: 0.9rem; margin-bottom: 1.25rem;">
+                        Drag and drop your exported Excel sheets (e.g. <code>MTN_4G RSRP.xlsx</code>, <code>AIRTEL_2G RXLEV.xlsx</code>, <code>GLO_3G ECLO.xlsx</code>) to compute the exact 2G/3G/4G benchmark tables and run the RAG RNO report.
+                    </p>
+
+                    <div class="upload-dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="dropzone-icon">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <h4>Click or Drag & Drop TEMS/NEMO Excel Sheets Here</h4>
+                        <p>Supports instant multi-file batch upload (.xlsx, .xls, .csv)</p>
+                        <input type="file" id="file-input" multiple accept=".xlsx,.xls,.csv" style="display:none" onchange="handleFileSelection(event)">
+                    </div>
+
+                    <div id="upload-status" class="mt-4" style="display:none;">
+                        <div class="alert-card alert-info">
+                            <div class="alert-body" id="upload-status-text">Uploading and recalculating tables...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: HYBRID RAG & AI REPORT GENERATOR -->
+            <section id="tab-rag-report" class="tab-pane">
+                <div class="rag-controls-card">
+                    <div class="controls-row">
+                        <div class="control-group">
+                            <label for="llm-provider">LLM Engine (Free / Budget Provider):</label>
+                            <select id="llm-provider" class="form-select" onchange="toggleApiKeyField()">
+                                <option value="built_in" selected>Built-in Senior RNO Expert Engine (100% Free / $0 / No Key Needed)</option>
+                                <option value="groq">Groq API (Free Tier: Llama-3.3-70B Instant)</option>
+                                <option value="gemini">Google AI Studio (Gemini 2.5 Flash Free Tier)</option>
+                                <option value="ollama">Ollama (100% Local / Offline LLM e.g. DeepSeek-R1)</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group" id="api-key-group" style="display:none;">
+                            <label for="api-key-input">API Key:</label>
+                            <input type="password" id="api-key-input" class="form-control" placeholder="Enter your free API key...">
+                        </div>
+
+                        <div class="control-group flex-end">
+                            <button class="btn btn-primary" id="btn-run-rag" onclick="generateReport()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                Generate Full RNO Audit Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="controls-row mt-2">
+                        <div class="control-group full-width">
+                            <label for="custom-instructions">Special Engineering Focus / Prompt Notes (Optional):</label>
+                            <input type="text" id="custom-instructions" class="form-control" placeholder="e.g. Focus on physical downtilts for Airtel 4G RSRQ degradation...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Output Container -->
+                <div class="report-card mt-4">
+                    <div class="report-header">
+                        <div class="report-title-box">
+                            <h3>Senior RNO Audit & Root Cause Analysis (RCA)</h3>
+                            <span class="badge badge-success" id="report-status-badge">Senior RNO Report Grounded</span>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn btn-sm btn-outline" onclick="copyReportToClipboard()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                Copy Markdown
+                            </button>
+                            <button class="btn btn-sm btn-outline" onclick="window.print()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                                Print / Save PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="report-body markdown-body" id="report-output-area">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: VISUAL CHARTS - LINE PROGRESSION CURVES -->
+            <section id="tab-benchmarks" class="tab-pane">
+                <div class="charts-section-header" style="margin-bottom: 1.25rem; padding: 0.75rem 1rem; background: rgba(99,102,241,0.08); border-left: 0.1875rem solid #6366f1; border-radius: 0.375rem;">
+                    <p style="margin:0; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+                        <strong style="color: var(--text-primary)">Benchmark Progression Lines</strong> — Each line represents one operator. A line that stays <strong>higher on the Y-axis</strong> across tighter thresholds (left → right) indicates superior RF coverage and quality depth.
+                    </p>
+                </div>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h4>2G GSM — RxLevel Coverage Progression</h4>
+                            <small>Outdoor → In-Car → Indoor Penetration Depth</small>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-2g-rxlev"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h4>2G GSM — RxQual BER Degradation Curve</h4>
+                            <small>Clean Speech (RxQual 2) → High BER (RxQual 5)</small>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-2g-rxqual"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h4>3G UMTS — RSCP Coverage Reliability Curve</h4>
+                            <small>Fair (-95 dBm) → Good (-85 dBm) → Reliable Target (-75 dBm)</small>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-3g-rscp"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h4>3G UMTS — Ec/No Pilot Quality Progression</h4>
+                            <small>Target (-15 dB) → Good (-12 dB) → Excellent (-8 dB)</small>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-3g-ecno"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h4>4G LTE — RSRP Coverage Depth Progression</h4>
+                            <small>Outdoor (-95 dBm) → In-Car (-85 dBm) → Indoor (-75 dBm)</small>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-4g-rsrp"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h4>4G LTE — RSRQ Quality Tightening Curve</h4>
+                            <small>Clean PRB (-18 dB) → Target (-15 dB) → Excellent SINR (-12 dB)</small>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-4g-rsrq"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: RCA & PLAYBOOKS - Dynamic Scoring Engine -->
+            <section id="tab-playbooks" class="tab-pane">
+                <div id="playbooks-dynamic-container">
+                    <!-- Populated dynamically by renderDynamicPlaybooks() in app.js -->
+                    <div style="text-align:center; padding: 3.75rem 1.25rem; color: var(--text-muted); font-size: 0.9rem;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:2.5rem;height:2.5rem; margin: 0 auto 0.75rem; display:block; opacity:0.4">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="m4.93 4.93 4.24 4.24"></path>
+                            <path d="m14.83 9.17 4.24-4.24"></path>
+                            <path d="m14.83 14.83 4.24 4.24"></path>
+                            <path d="m9.17 14.83-4.24 4.24"></path>
+                        </svg>
+                        Loading RCA scoring engine from benchmark tables...
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/web/app.js"></script>
+</body>
+</html>
