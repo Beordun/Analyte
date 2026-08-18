@@ -476,8 +476,8 @@ function renderLineCharts() {
                 parseVal(tbls.table_2g.rows[2].values[op]),
                 parseVal(tbls.table_2g.rows[3].values[op])
             ],
-            borderColor: OPERATOR_COLORS[op]?.border || "#6366f1",
-            backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(99, 102, 241, 0.15)"
+            borderColor: OPERATOR_COLORS[op]?.border || "#070736",
+            backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
         }))
     });
 
@@ -490,8 +490,8 @@ function renderLineCharts() {
                 parseVal(tbls.table_2g.rows[5].values[op]),
                 parseVal(tbls.table_2g.rows[4].values[op])
             ],
-            borderColor: OPERATOR_COLORS[op]?.border || "#6366f1",
-            backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(99, 102, 241, 0.15)"
+            borderColor: OPERATOR_COLORS[op]?.border || "#070736",
+            backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
         }))
     });
 
@@ -507,8 +507,8 @@ function renderLineCharts() {
                     reliable75 !== null ? Math.min(100, (reliable75 + 18).toFixed(2)) : null,
                     reliable75
                 ],
-                borderColor: OPERATOR_COLORS[op]?.border || "#6366f1",
-                backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(99, 102, 241, 0.15)"
+                borderColor: OPERATOR_COLORS[op]?.border || "#070736",
+                backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
             };
         })
     });
@@ -525,8 +525,8 @@ function renderLineCharts() {
                     pass15 !== null ? Math.max(0, (pass15 - 18).toFixed(2)) : null,
                     pass15 !== null ? Math.max(0, (pass15 - 45).toFixed(2)) : null
                 ],
-                borderColor: OPERATOR_COLORS[op]?.border || "#6366f1",
-                backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(99, 102, 241, 0.15)"
+                borderColor: OPERATOR_COLORS[op]?.border || "#070736",
+                backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
             };
         })
     });
@@ -541,8 +541,8 @@ function renderLineCharts() {
                 parseVal(tbls.table_4g.rows[1].values[op]),
                 parseVal(tbls.table_4g.rows[2].values[op])
             ],
-            borderColor: OPERATOR_COLORS[op]?.border || "#6366f1",
-            backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(99, 102, 241, 0.15)"
+            borderColor: OPERATOR_COLORS[op]?.border || "#070736",
+            backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
         }))
     });
 
@@ -556,8 +556,8 @@ function renderLineCharts() {
                 parseVal(tbls.table_4g.rows[4].values[op]),
                 parseVal(tbls.table_4g.rows[3].values[op])
             ],
-            borderColor: OPERATOR_COLORS[op]?.border || "#6366f1",
-            backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(99, 102, 241, 0.15)"
+            borderColor: OPERATOR_COLORS[op]?.border || "#070736",
+            backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
         }))
     });
 }
