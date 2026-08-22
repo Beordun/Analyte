@@ -146,6 +146,102 @@ function formatTableCellValue(kpi, val) {
     return `<span style="color: ${color}; font-weight: 700;">${val}</span>`;
 }
 
+// ── Export Tables (CSV / Excel) ──────────────────────────────
+
+function exportTablesToCSV() {
+    const tbls = globalExactTables || (typeof EMBEDDED_EXACT_TABLES !== 'undefined' ? EMBEDDED_EXACT_TABLES : null);
+    if (!tbls) {
+        alert("No table data available to export.");
+        return;
+    }
+    const operators = tbls.operators || ["9MOBILE", "AIRTEL", "GLO", "MTN"];
+    
+    let csvContent = "";
+    
+    const sections = [
+        { name: "2G GSM BENCHMARK TABLE", data: tbls.table_2g },
+        { name: "3G UMTS BENCHMARK TABLE", data: tbls.table_3g },
+        { name: "4G LTE BENCHMARK TABLE", data: tbls.table_4g }
+    ];
+    
+    sections.forEach(sec => {
+        csvContent += `\"${sec.name}\"\n`;
+        csvContent += `\"KPI Metric / Benchmark\",` + operators.map(op => `\"${op}\"`).join(",") + "\n";
+        if (sec.data && sec.data.rows) {
+            sec.data.rows.forEach(row => {
+                const vals = operators.map(op => `\"${row.values[op] ?? 'N/A'}\"`).join(",");
+                csvContent += `\"${row.kpi}\",${vals}\n`;
+            });
+        }
+        csvContent += "\n";
+    });
+    
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `Ranalyte_Benchmark_Tables_${new Date().toISOString().slice(0,10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+}
+
+function exportTablesToExcel() {
+    const tbls = globalExactTables || (typeof EMBEDDED_EXACT_TABLES !== 'undefined' ? EMBEDDED_EXACT_TABLES : null);
+    if (!tbls) {
+        alert("No table data available to export.");
+        return;
+    }
+    const operators = tbls.operators || ["9MOBILE", "AIRTEL", "GLO", "MTN"];
+    
+    if (window.XLSX) {
+        const wb = XLSX.utils.book_new();
+        
+        const buildSheetData = (tableObj) => {
+            const header = ["KPI Metric / Benchmark", ...operators];
+            const rows = [header];
+            if (tableObj && tableObj.rows) {
+                tableObj.rows.forEach(r => {
+                    const rowData = [r.kpi, ...operators.map(op => r.values[op] ?? "N/A")];
+                    rows.push(rowData);
+                });
+            }
+            return rows;
+        };
+        
+        const ws2g = XLSX.utils.aoa_to_sheet(buildSheetData(tbls.table_2g));
+        const ws3g = XLSX.utils.aoa_to_sheet(buildSheetData(tbls.table_3g));
+        const ws4g = XLSX.utils.aoa_to_sheet(buildSheetData(tbls.table_4g));
+        
+        // Summary sheet with all 3 tables stacked
+        const allData = [
+            ["RANALYTE-AI AUDIT REPORT - DRIVE TEST BENCHMARK TABLES"],
+            [`Generated: ${new Date().toLocaleString()}`],
+            [],
+            ["--- 2G GSM BENCHMARK TABLE ---"],
+            ...buildSheetData(tbls.table_2g),
+            [],
+            ["--- 3G UMTS BENCHMARK TABLE ---"],
+            ...buildSheetData(tbls.table_3g),
+            [],
+            ["--- 4G LTE BENCHMARK TABLE ---"],
+            ...buildSheetData(tbls.table_4g)
+        ];
+        const wsSummary = XLSX.utils.aoa_to_sheet(allData);
+        
+        XLSX.utils.book_append_sheet(wb, wsSummary, "All_Benchmarks");
+        XLSX.utils.book_append_sheet(wb, ws2g, "2G_GSM");
+        XLSX.utils.book_append_sheet(wb, ws3g, "3G_UMTS");
+        XLSX.utils.book_append_sheet(wb, ws4g, "4G_LTE");
+        
+        XLSX.writeFile(wb, `Ranalyte_Benchmark_Tables_${new Date().toISOString().slice(0,10)}.xlsx`);
+    } else {
+        // Fallback to CSV if SheetJS is somehow unavailable
+        exportTablesToCSV();
+    }
+}
+
 function renderInitialReport() {
     const outputArea = document.getElementById("report-output-area");
     if (!outputArea) return;
