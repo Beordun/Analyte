@@ -555,10 +555,17 @@ function updateWorstPerformerBanner() {
     const sorted = Object.entries(opScores).sort((a, b) => a[1] - b[1]);
     if (sorted.length > 0) {
         const worst = sorted[0];
-        document.getElementById("worst-op-tag").innerText = `${worst[0]} (${worst[1].toFixed(1)}%)`;
-        document.getElementById("worst-op-desc").innerHTML = `
-            <strong>${worst[0]}</strong> has been identified as the worst-performing network provider from the drive test data with an overall compliance score of <strong>${worst[1].toFixed(1)}%</strong>.
-        `;
+        const banner = document.getElementById("worst-op-banner");
+        const tag = document.getElementById("worst-op-tag");
+        const desc = document.getElementById("worst-op-desc");
+        
+        if (tag) tag.innerText = `${worst[0]} (${worst[1].toFixed(1)}%)`;
+        if (desc) {
+            desc.innerHTML = `
+                <strong>${worst[0]}</strong> has been identified as the worst-performing network provider from the drive test data with an overall compliance score of <strong>${worst[1].toFixed(1)}%</strong> across 2G, 3G, and 4G benchmarks.
+            `;
+        }
+        if (banner) banner.style.display = "flex";
     }
 }
 

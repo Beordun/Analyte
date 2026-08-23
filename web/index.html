@@ -87,18 +87,16 @@
 
             <!-- TAB 1: EXACT 2G, 3G, 4G BENCHMARK TABLES -->
             <section id="tab-exact-tables" class="tab-pane active">
-                <!-- Alert Banner for Worst Performer -->
-                <div class="alert-card alert-danger" id="worst-op-banner">
+                <!-- Alert Banner for Worst Performer (Shown after user uploads data & calculation completes) -->
+                <div class="alert-card alert-danger" id="worst-op-banner" style="display:none; margin-bottom: 1.25rem;">
                     <div class="alert-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                     </div>
                     <div class="alert-body">
                         <h3>Critical Event Summary: Worst-Performing Operator</h3>
-                        <p id="worst-op-desc"><strong>AIRTEL</strong> ranks as the worst-performing network provider in Kubwa (78.65% compliance), suffering from severe 4G LTE coverage craters (44.3% fail) and RSRQ interference degradation (49.6% fail).</p>
+                        <p id="worst-op-desc"></p>
                     </div>
-                    <div class="alert-tag" id="worst-op-tag">
-                        AIRTEL (78.65%)
-                    </div>
+                    <div class="alert-tag" id="worst-op-tag"></div>
                 </div>
 
                 <!-- Export Bar -->
@@ -216,8 +214,9 @@
                             <input type="password" id="api-key-input" class="form-control" placeholder="Enter your free API key...">
                         </div>
 
-                        <div class="control-group flex-end">
-                            <button class="btn btn-primary" id="btn-run-rag" onclick="generateReport()">
+                        <div class="control-group">
+                            <label style="visibility:hidden; user-select:none;">Action:</label>
+                            <button class="btn btn-primary" id="btn-run-rag" onclick="generateReport()" style="width:100%; justify-content:center; padding: 0.625rem 0.875rem;">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                                 Generate Full RNO Audit Report
                             </button>
