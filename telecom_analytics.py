@@ -79,6 +79,18 @@ BENCHMARKS = {
         ],
         "kpi_target": ">= -15 dB",
         "target_min": -15.0
+    },
+    "4G_SINR": {
+        "name": "4G LTE SINR",
+        "unit": "dB",
+        "bins": [
+            {"label": ">= 15 dB (Excellent / High MCS)", "min": 15.0, "max": float('inf')},
+            {"label": "[10, 15) dB (Good / Nominal)", "min": 10.0, "max": 15.0},
+            {"label": "[5, 10) dB (Fair / Low MCS)", "min": 5.0, "max": 10.0},
+            {"label": "< 5 dB (Poor / High BLER)", "min": float('-inf'), "max": 5.0},
+        ],
+        "kpi_target": ">= 10 dB",
+        "target_min": 10.0
     }
 }
 

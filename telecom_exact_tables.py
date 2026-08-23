@@ -195,6 +195,18 @@ def calculate_exact_telecom_tables(files_or_dir="KUBWA_TABLE VIEW"):
             {
                 "kpi": "4G - Quality - RSRQ >=-18 (%)",
                 "values": {}
+            },
+            {
+                "kpi": "4G - Quality - SINR >= 15 (%)",
+                "values": {}
+            },
+            {
+                "kpi": "4G - Quality - SINR >= 10 (%)",
+                "values": {}
+            },
+            {
+                "kpi": "4G - Quality - SINR >= 5 (%)",
+                "values": {}
             }
         ]
     }
@@ -202,9 +214,11 @@ def calculate_exact_telecom_tables(files_or_dir="KUBWA_TABLE VIEW"):
     for op in ops_list:
         rsrp = raw_data.get("4G", {}).get(op, {}).get("RSRP", [])
         rsrq = raw_data.get("4G", {}).get(op, {}).get("RSRQ", [])
+        sinr = raw_data.get("4G", {}).get(op, {}).get("SINR", [])
         
         n_rsrp = len(rsrp)
         n_rsrq = len(rsrq)
+        n_sinr = len(sinr)
         
         p_rsrp95 = round((sum(1 for x in rsrp if x >= -95.0) / n_rsrp * 100), 2) if n_rsrp > 0 else "N/A"
         p_rsrp85 = round((sum(1 for x in rsrp if x >= -85.0) / n_rsrp * 100), 2) if n_rsrp > 0 else "N/A"
@@ -213,6 +227,10 @@ def calculate_exact_telecom_tables(files_or_dir="KUBWA_TABLE VIEW"):
         p_rsrq12 = round((sum(1 for x in rsrq if x >= -12.0) / n_rsrq * 100), 2) if n_rsrq > 0 else "N/A"
         p_rsrq15 = round((sum(1 for x in rsrq if x >= -15.0) / n_rsrq * 100), 2) if n_rsrq > 0 else "N/A"
         p_rsrq18 = round((sum(1 for x in rsrq if x >= -18.0) / n_rsrq * 100), 2) if n_rsrq > 0 else "N/A"
+
+        p_sinr15 = round((sum(1 for x in sinr if x >= 15.0) / n_sinr * 100), 2) if n_sinr > 0 else "N/A"
+        p_sinr10 = round((sum(1 for x in sinr if x >= 10.0) / n_sinr * 100), 2) if n_sinr > 0 else "N/A"
+        p_sinr5  = round((sum(1 for x in sinr if x >= 5.0) / n_sinr * 100), 2) if n_sinr > 0 else "N/A"
         
         table_4g["rows"][0]["values"][op] = f"{p_rsrp95}%" if p_rsrp95 != "N/A" else "N/A"
         table_4g["rows"][1]["values"][op] = f"{p_rsrp85}%" if p_rsrp85 != "N/A" else "N/A"
@@ -220,6 +238,9 @@ def calculate_exact_telecom_tables(files_or_dir="KUBWA_TABLE VIEW"):
         table_4g["rows"][3]["values"][op] = f"{p_rsrq12}%" if p_rsrq12 != "N/A" else "N/A"
         table_4g["rows"][4]["values"][op] = f"{p_rsrq15}%" if p_rsrq15 != "N/A" else "N/A"
         table_4g["rows"][5]["values"][op] = f"{p_rsrq18}%" if p_rsrq18 != "N/A" else "N/A"
+        table_4g["rows"][6]["values"][op] = f"{p_sinr15}%" if p_sinr15 != "N/A" else "N/A"
+        table_4g["rows"][7]["values"][op] = f"{p_sinr10}%" if p_sinr10 != "N/A" else "N/A"
+        table_4g["rows"][8]["values"][op] = f"{p_sinr5}%" if p_sinr5 != "N/A" else "N/A"
 
     return {
         "operators": ops_list,

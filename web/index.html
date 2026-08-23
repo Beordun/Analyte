@@ -161,7 +161,7 @@
                             <span class="tech-pill tech-4g">4G LTE</span>
                             <h3>4G LTE Drive Test Coverage & Quality Benchmark Table</h3>
                         </div>
-                        <span class="badge badge-info">RSRP & RSRQ Metrics</span>
+                        <span class="badge badge-info">RSRP, RSRQ & SINR Metrics</span>
                     </div>
                     <div class="table-responsive">
                         <table class="styled-table telecom-grid-table" id="table-4g-grid">
@@ -310,6 +310,13 @@
                             <small>Clean PRB (-18 dB) → Target (-15 dB) → Excellent SINR (-12 dB)</small>
                         </div>
                         <div class="chart-container"><canvas id="chart-4g-rsrq"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h4>4G LTE — SINR Radio Quality Progression</h4>
+                            <small>Fair (≥ 5 dB) → Nominal (≥ 10 dB) → Peak MCS (≥ 15 dB)</small>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-4g-sinr"></canvas></div>
                     </div>
                 </div>
             </section>

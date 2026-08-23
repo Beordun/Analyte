@@ -467,7 +467,10 @@ function calculateClientSideExactTables() {
             { kpi: "4G - Indoor Coverage - RSRP >=-75 (%)", values: {} },
             { kpi: "4G - Quality - RSRQ >=-12 (%)", values: {} },
             { kpi: "4G - Quality - RSRQ >=-15 (%)", values: {} },
-            { kpi: "4G - Quality - RSRQ >=-18 (%)", values: {} }
+            { kpi: "4G - Quality - RSRQ >=-18 (%)", values: {} },
+            { kpi: "4G - Quality - SINR >= 15 (%)", values: {} },
+            { kpi: "4G - Quality - SINR >= 10 (%)", values: {} },
+            { kpi: "4G - Quality - SINR >= 5 (%)", values: {} }
         ]
     };
     
@@ -497,8 +500,10 @@ function calculateClientSideExactTables() {
         // 4G
         const rsrp = raw["4G"]?.[op]?.["RSRP"] || [];
         const rsrq = raw["4G"]?.[op]?.["RSRQ"] || [];
+        const sinr = raw["4G"]?.[op]?.["SINR"] || [];
         const nRsrp = rsrp.length;
         const nRsrq = rsrq.length;
+        const nSinr = sinr.length;
         
         table_4g.rows[0].values[op] = nRsrp > 0 ? (calcPct(rsrp, x => x >= -95) + "%") : "N/A";
         table_4g.rows[1].values[op] = nRsrp > 0 ? (calcPct(rsrp, x => x >= -85) + "%") : "N/A";
@@ -506,6 +511,9 @@ function calculateClientSideExactTables() {
         table_4g.rows[3].values[op] = nRsrq > 0 ? (calcPct(rsrq, x => x >= -12) + "%") : "N/A";
         table_4g.rows[4].values[op] = nRsrq > 0 ? (calcPct(rsrq, x => x >= -15) + "%") : "N/A";
         table_4g.rows[5].values[op] = nRsrq > 0 ? (calcPct(rsrq, x => x >= -18) + "%") : "N/A";
+        table_4g.rows[6].values[op] = nSinr > 0 ? (calcPct(sinr, x => x >= 15) + "%") : "N/A";
+        table_4g.rows[7].values[op] = nSinr > 0 ? (calcPct(sinr, x => x >= 10) + "%") : "N/A";
+        table_4g.rows[8].values[op] = nSinr > 0 ? (calcPct(sinr, x => x >= 5) + "%") : "N/A";
     });
     
     return {
@@ -518,8 +526,8 @@ function calculateClientSideExactTables() {
 
 function calcPct(arr, filterFn) {
     if (!arr || arr.length === 0) return "0.00";
-    const count = arr.filter(filterFn).length;
-    return ((count / arr.length) * 100).toFixed(2);
+    const passed = arr.filter(filterFn).length;
+    return ((passed / arr.length) * 100).toFixed(2);
 }
 
 function updateWorstPerformerBanner() {
@@ -656,6 +664,24 @@ function renderLineCharts() {
             backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
         }))
     });
+
+    // 7. 4G SINR Radio Quality Progression (SINR >= 5 -> SINR >= 10 -> SINR >= 15)
+    const sinrChartEl = document.getElementById("chart-4g-sinr");
+    if (sinrChartEl) {
+        createProgressionLineChart("chart-4g-sinr", {
+            labels: [">= 5 dB (Fair / Low MCS)", ">= 10 dB (Good / Nominal)", ">= 15 dB (Peak 64/256QAM)"],
+            datasets: operators.map(op => ({
+                label: op,
+                data: [
+                    tbls.table_4g.rows[8] ? parseVal(tbls.table_4g.rows[8].values[op]) : null,
+                    tbls.table_4g.rows[7] ? parseVal(tbls.table_4g.rows[7].values[op]) : null,
+                    tbls.table_4g.rows[6] ? parseVal(tbls.table_4g.rows[6].values[op]) : null
+                ],
+                borderColor: OPERATOR_COLORS[op]?.border || "#070736",
+                backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
+            }))
+        });
+    }
 }
 
 function parseVal(v) {

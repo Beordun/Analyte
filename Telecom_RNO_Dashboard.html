@@ -1370,7 +1370,7 @@ body {
                             <span class="tech-pill tech-4g">4G LTE</span>
                             <h3>4G LTE Drive Test Coverage & Quality Benchmark Table</h3>
                         </div>
-                        <span class="badge badge-info">RSRP & RSRQ Metrics</span>
+                        <span class="badge badge-info">RSRP, RSRQ & SINR Metrics</span>
                     </div>
                     <div class="table-responsive">
                         <table class="styled-table telecom-grid-table" id="table-4g-grid">
@@ -1520,6 +1520,13 @@ body {
                         </div>
                         <div class="chart-container"><canvas id="chart-4g-rsrq"></canvas></div>
                     </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h4>4G LTE — SINR Radio Quality Progression</h4>
+                            <small>Fair (≥ 5 dB) → Nominal (≥ 10 dB) → Peak MCS (≥ 15 dB)</small>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-4g-sinr"></canvas></div>
+                    </div>
                 </div>
             </section>
 
@@ -1545,9 +1552,9 @@ body {
     <script>
 
     // Injected Exact Benchmark Tables and Audit Data
-    const EMBEDDED_EXACT_TABLES = {"operators": [], "table_2g": {"title": "2G GSM Drive Test Coverage & Quality Benchmark", "operators": [], "rows": [{"kpi": "2G - Rx Level (Outdoor Coverage) >=-105 (%)", "values": {}}, {"kpi": "2G - Rx Level (Outdoor Coverage) >=-92 (%)", "values": {}}, {"kpi": "2G - Rx Level (Incar Coverage) >=-84 (%)", "values": {}}, {"kpi": "2G - Rx Level (Indoor Coverage) >=-74 (%)", "values": {}}, {"kpi": "2G - Quality - Rxqual >= 5 (%)", "values": {}}, {"kpi": "2G - Quality - Rxqual >= 2 (%)", "values": {}}]}, "table_3g": {"title": "3G UMTS Drive Test Coverage Reliability & Quality Benchmark", "operators": [], "rows": [{"kpi": "% 3G Coverage Reliability (RSCP >= - 75dBm)", "values": {}}, {"kpi": "3G - Quality - ECNO >=-15 (%)", "values": {}}]}, "table_4g": {"title": "4G LTE Drive Test Coverage & Quality Benchmark", "operators": [], "rows": [{"kpi": "4G - Outdoor Coverage - RSRP >=-95 (%)", "values": {}}, {"kpi": "4G - Incar Coverage - RSRP >=-85 (%)", "values": {}}, {"kpi": "4G - Indoor Coverage - RSRP >=-75 (%)", "values": {}}, {"kpi": "4G - Quality - RSRQ >=-12 (%)", "values": {}}, {"kpi": "4G - Quality - RSRQ >=-15 (%)", "values": {}}, {"kpi": "4G - Quality - RSRQ >=-18 (%)", "values": {}}]}};
+    const EMBEDDED_EXACT_TABLES = {"operators": [], "table_2g": {"title": "2G GSM Drive Test Coverage & Quality Benchmark", "operators": [], "rows": [{"kpi": "2G - Rx Level (Outdoor Coverage) >=-105 (%)", "values": {}}, {"kpi": "2G - Rx Level (Outdoor Coverage) >=-92 (%)", "values": {}}, {"kpi": "2G - Rx Level (Incar Coverage) >=-84 (%)", "values": {}}, {"kpi": "2G - Rx Level (Indoor Coverage) >=-74 (%)", "values": {}}, {"kpi": "2G - Quality - Rxqual >= 5 (%)", "values": {}}, {"kpi": "2G - Quality - Rxqual >= 2 (%)", "values": {}}]}, "table_3g": {"title": "3G UMTS Drive Test Coverage Reliability & Quality Benchmark", "operators": [], "rows": [{"kpi": "% 3G Coverage Reliability (RSCP >= - 75dBm)", "values": {}}, {"kpi": "3G - Quality - ECNO >=-15 (%)", "values": {}}]}, "table_4g": {"title": "4G LTE Drive Test Coverage & Quality Benchmark", "operators": [], "rows": [{"kpi": "4G - Outdoor Coverage - RSRP >=-95 (%)", "values": {}}, {"kpi": "4G - Incar Coverage - RSRP >=-85 (%)", "values": {}}, {"kpi": "4G - Indoor Coverage - RSRP >=-75 (%)", "values": {}}, {"kpi": "4G - Quality - RSRQ >=-12 (%)", "values": {}}, {"kpi": "4G - Quality - RSRQ >=-15 (%)", "values": {}}, {"kpi": "4G - Quality - RSRQ >=-18 (%)", "values": {}}, {"kpi": "4G - Quality - SINR >= 15 (%)", "values": {}}, {"kpi": "4G - Quality - SINR >= 10 (%)", "values": {}}, {"kpi": "4G - Quality - SINR >= 5 (%)", "values": {}}]}};
     const EMBEDDED_ANALYTICS = {};
-    const EMBEDDED_DIGEST = {"digest": "# DRIVE TEST BENCHMARK AUDIT & KPI REPORT\n## CLUSTER: KUBWA / MULTI-OPERATOR BENCHMARK\n\n### 1. SUMMARY OF PASS RATES (COMPLIANCE TO RF TARGETS)\n| Operator | 2G RxLev (>= -92dBm) | 2G RxQual (0-2) | 3G RSCP (>= -95dBm) | 3G Ec/No (>= -15dB) | 4G RSRP (>= -95dBm) | 4G RSRQ (>= -15dB) |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| **9MOBILE** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% |\n| **AIRTEL** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% |\n| **GLO** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% |\n| **MTN** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% |\n\n**Cluster Overall Ranking**:\n1. **9MOBILE**: Composite Compliance Score = **0%** (BEST PERFORMER)\n2. **AIRTEL**: Composite Compliance Score = **0%**\n3. **GLO**: Composite Compliance Score = **0%**\n4. **MTN**: Composite Compliance Score = **0%** (WORST PERFORMER)\n\n**CRITICAL EVENT ALERT**: The worst-performing network provider in this drive test cluster is **MTN** (Overall Compliance: 0%).\n\n### 2. DETAILED RF KPI ANALYSIS & BIN DISTRIBUTIONS", "ranking": [["9MOBILE", 0], ["AIRTEL", 0], ["GLO", 0], ["MTN", 0]]};
+    const EMBEDDED_DIGEST = {"digest": "# DRIVE TEST BENCHMARK AUDIT & KPI REPORT\n## CLUSTER: KUBWA / MULTI-OPERATOR BENCHMARK\n\n### 1. SUMMARY OF PASS RATES (COMPLIANCE TO RF TARGETS)\n| Operator | 2G RxLev (>= -92dBm) | 2G RxQual (0-2) | 3G RSCP (>= -95dBm) | 3G Ec/No (>= -15dB) | 4G RSRP (>= -95dBm) | 4G RSRQ (>= -15dB) | 4G SINR (>= 10dB) |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| **9MOBILE** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% |\n| **AIRTEL** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% |\n| **GLO** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% |\n| **MTN** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% |\n\n**Cluster Overall Ranking**:\n1. **9MOBILE**: Composite Compliance Score = **0%** (BEST PERFORMER)\n2. **AIRTEL**: Composite Compliance Score = **0%**\n3. **GLO**: Composite Compliance Score = **0%**\n4. **MTN**: Composite Compliance Score = **0%** (WORST PERFORMER)\n\n**CRITICAL EVENT ALERT**: The worst-performing network provider in this drive test cluster is **MTN** (Overall Compliance: 0%).\n\n### 2. DETAILED RF KPI ANALYSIS & BIN DISTRIBUTIONS", "ranking": [["9MOBILE", 0], ["AIRTEL", 0], ["GLO", 0], ["MTN", 0]]};
     const EMBEDDED_REPORT = "# SENIOR RADIO NETWORK OPTIMIZATION (RNO) & DRIVE TEST BENCHMARK REPORT\n**Cluster / Drive Route**: Kubwa Region (Multi-Operator Benchmark)\n**Technologies Audited**: 2G GSM, 3G UMTS, 4G LTE\n**Audit Status**: COMPLETED | **Date**: August 2026\n\n## 1. EXECUTIVE SUMMARY & WORST-PERFORMING OPERATOR VERDICT\nA comprehensive multi-operator drive test benchmark was conducted across the Kubwa drive route covering **4 major operators** (9mobile, Airtel, Glo, MTN). Over **80,000 drive test sample points** were ingested, parsed, and evaluated against 3GPP and regulatory QoS benchmarks.\n\n> [ALERT] CRITICAL EVENT & BENCHMARK AUDIT VERDICT:\n> **WORST-PERFORMING NETWORK PROVIDER: MTN** (Overall Benchmark Compliance: **0%**).\n> - **Primary Failure Points**: Severe 4G LTE coverage and quality collapse in Kubwa. **Airtel 4G RSRP** failed the >= -95 dBm target in **44.27%** of samples (with 7.36% in critical coverage holes < -105 dBm). **Airtel 4G RSRQ** failed the >= -15 dB threshold in **49.58%** of samples (17.69% severe interference < -18 dB). Furthermore, 2G RxLev had the highest cluster failure rate (**12.89%** weak coverage).\n\n> [TOP PERFORMER] BEST-PERFORMING NETWORK PROVIDER: 9MOBILE (Overall Compliance: **0%**).\n> - 9mobile delivered superior 2G/3G RF footprint (97.56% RxLev pass rate, 99.38% RSCP pass rate), though 4G LTE drive data was absent from this survey set.\n\n### Operator Benchmark Scorecard\n| Rank | Operator | 2G RxLev (>= -92dBm) | 2G RxQual (0-2) | 3G RSCP (>= -95dBm) | 3G Ec/No (>= -15dB) | 4G RSRP (>= -95dBm) | 4G RSRQ (>= -15dB) | Composite Score |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| 1 | **9MOBILE** **(BEST)** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% | **0%** |\n| 2 | **AIRTEL** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% | **0%** |\n| 3 | **GLO** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% | **0%** |\n| 4 | **MTN** **(WORST)** | N/A% | N/A% | N/A% | N/A% | N/A% | N/A% | **0%** |\n\n## 2. IN-DEPTH RF KPI AUDIT PER TECHNOLOGY\n### A. 2G GSM Performance (RxLev & RxQual)\n- **Coverage (RxLev >= -92 dBm)**: 9mobile (97.56%), Glo (96.59%), and MTN (95.87%) exhibit healthy signal strength across the route. **Airtel lagged significantly at 87.11%**, logging **378 samples in poor/critical signal zones (< -92 dBm)**.\n- **Voice Quality (RxQual 0-2)**: Glo led quality with **88.89% clean speech**, followed closely by MTN (87.96%) and 9mobile (86.16%). Airtel recorded the highest BER degradation with **7.96% in severe interference/distorted voice (RxQual 6-7)**.\n\n### B. 3G UMTS Performance (RSCP & Ec/No)\n- **Coverage (RSCP >= -95 dBm)**: All operators showed robust 3G coverage footprints (>95%). Airtel achieved 99.90% and 9mobile 99.38%. Glo recorded the lowest 3G signal mean (-82.79 dBm vs -72.18 dBm on MTN).\n- **Quality / Pilot Pollution (Ec/No >= -15 dB)**: 9mobile (97.62%) and MTN (97.52%) had excellent pilot clarity. Airtel (4.19%) and Glo (4.40%) suffered from pilot pollution zones where multiple NodeB sectors overlap with similar RSCP values, degrading downlink C/I.\n\n### C. 4G LTE Performance (RSRP & RSRQ)\n- **Coverage (RSRP >= -95 dBm)**: **4G coverage is the primary bottleneck across all operators in Kubwa**. MTN achieved the highest compliance at **63.10%**, followed by Airtel at **55.73%**, and Glo at **49.80%**.\n- **Signal Quality (RSRQ >= -15 dB)**: **Glo dominated 4G quality with an exceptional 92.97% pass rate** (mean RSRQ -10.90 dB, 68.93% in >= -12 dB bin). MTN delivered **71.00%**, while **Airtel severely degraded to 50.42%** (mean RSRQ -14.99 dB with 17.69% in heavy interference < -18 dB).\n\n## 3. ROOT CAUSE ANALYSIS (RCA) FOR PERFORMANCE DEGRADATIONS\n1. **Airtel 4G Quality Collapse (50.42% RSRQ Pass)**: Attributed to severe Reference Signal (CRS) interference caused by PCI Mod3 collisions and lack of inter-cell interference coordination (ICIC) on overlapping high-band LTE layers.\n2. **Cluster-Wide 4G Coverage Holes (RSRP < -95 dBm in 37-50% of route)**: Driven by aggressive antenna electrical downtilts on high-band eNodeB sites (e.g. Band 3/Band 7) creating signal dead zones in suburban valleys and interior road corridors.\n3. **Airtel 2G Weak Signal Pockets (12.89% Fail)**: Presence of missing neighbor definitions and misaligned azimuths on 2G BCCH transmitters causing delayed handovers into weak signal traps.\n4. **3G Pilot Pollution on Airtel & Glo**: Overlapping sectors without dominant server dominance, leading to CPICH cancellation and Ec/No degradation despite high RSCP.\n\n## 4. CONCRETE RNO OPTIMIZATION ACTION PLAN\n### Tier 1: Immediate Low-Cost Physical Tweaks (Antenna & Feeder)\n- **Airtel eNodeB Sector Tilts**: Reduce mechanical down-tilt by 1.5\u00b0 - 2.0\u00b0 on peripheral sites along the Kubwa expressway to close the 44.3% RSRP coverage gap.\n- **Glo 3G NodeB Azimuth Audit**: Re-orient sectors exhibiting pilot pollution by \u00b115\u00b0 to reinforce single dominant server zones.\n- **RF Feeder & VSWR Inspection**: Perform sweep tests on Airtel BTS sectors reporting RxLev < -105 dBm to rectify feeder water ingress and loose jumper connectors.\n\n### Tier 2: Soft Parameter & Radio Resource Tuning\n- **Airtel 4G PCI Replanning**: Audit and reallocate Physical Cell IDs (PCIs) to eliminate all Modulo 3 and Modulo 6 collisions across adjacent sectors.\n- **4G RS Power Boosting**: Increase LTE Reference Signal Power (RS Power) by +1.5 to +2.0 dB on macro sites to expand coverage footprint and improve cell-edge RSRP.\n- **2G Frequency & Handover Tuning**: Execute AFR (Automated Frequency Replanning), activate Baseband Frequency Hopping (BBH), and tighten 2G-3G inter-RAT handover thresholds.\n- **3G CPICH Power Balancing**: Normalize CPICH pilot power to 30.0 - 31.5 dBm (10% of amplifier rating) on secondary carriers to suppress pilot pollution.\n\n### Tier 3: Strategic Network Expansion\n- **Low-Band LTE Rollout (L900 / L800)**: Deploy Sub-1GHz LTE layer across the Kubwa cluster to provide robust indoor and deep suburban 4G coverage penetration.\n\n## 5. REGULATORY & QUALITY OF SERVICE (QoS) COMPLIANCE SUMMARY\n- **NCC 2G/3G Target**: 9mobile, Glo, and MTN meet the regulatory requirement of >= 95% coverage compliance.\n- **4G LTE Target**: Airtel and Glo require immediate optimization intervention to attain the minimum 85% cluster RSRP compliance threshold.";
 
     // State
@@ -2019,7 +2026,10 @@ function calculateClientSideExactTables() {
             { kpi: "4G - Indoor Coverage - RSRP >=-75 (%)", values: {} },
             { kpi: "4G - Quality - RSRQ >=-12 (%)", values: {} },
             { kpi: "4G - Quality - RSRQ >=-15 (%)", values: {} },
-            { kpi: "4G - Quality - RSRQ >=-18 (%)", values: {} }
+            { kpi: "4G - Quality - RSRQ >=-18 (%)", values: {} },
+            { kpi: "4G - Quality - SINR >= 15 (%)", values: {} },
+            { kpi: "4G - Quality - SINR >= 10 (%)", values: {} },
+            { kpi: "4G - Quality - SINR >= 5 (%)", values: {} }
         ]
     };
     
@@ -2049,8 +2059,10 @@ function calculateClientSideExactTables() {
         // 4G
         const rsrp = raw["4G"]?.[op]?.["RSRP"] || [];
         const rsrq = raw["4G"]?.[op]?.["RSRQ"] || [];
+        const sinr = raw["4G"]?.[op]?.["SINR"] || [];
         const nRsrp = rsrp.length;
         const nRsrq = rsrq.length;
+        const nSinr = sinr.length;
         
         table_4g.rows[0].values[op] = nRsrp > 0 ? (calcPct(rsrp, x => x >= -95) + "%") : "N/A";
         table_4g.rows[1].values[op] = nRsrp > 0 ? (calcPct(rsrp, x => x >= -85) + "%") : "N/A";
@@ -2058,6 +2070,9 @@ function calculateClientSideExactTables() {
         table_4g.rows[3].values[op] = nRsrq > 0 ? (calcPct(rsrq, x => x >= -12) + "%") : "N/A";
         table_4g.rows[4].values[op] = nRsrq > 0 ? (calcPct(rsrq, x => x >= -15) + "%") : "N/A";
         table_4g.rows[5].values[op] = nRsrq > 0 ? (calcPct(rsrq, x => x >= -18) + "%") : "N/A";
+        table_4g.rows[6].values[op] = nSinr > 0 ? (calcPct(sinr, x => x >= 15) + "%") : "N/A";
+        table_4g.rows[7].values[op] = nSinr > 0 ? (calcPct(sinr, x => x >= 10) + "%") : "N/A";
+        table_4g.rows[8].values[op] = nSinr > 0 ? (calcPct(sinr, x => x >= 5) + "%") : "N/A";
     });
     
     return {
@@ -2070,8 +2085,8 @@ function calculateClientSideExactTables() {
 
 function calcPct(arr, filterFn) {
     if (!arr || arr.length === 0) return "0.00";
-    const count = arr.filter(filterFn).length;
-    return ((count / arr.length) * 100).toFixed(2);
+    const passed = arr.filter(filterFn).length;
+    return ((passed / arr.length) * 100).toFixed(2);
 }
 
 function updateWorstPerformerBanner() {
@@ -2208,6 +2223,24 @@ function renderLineCharts() {
             backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
         }))
     });
+
+    // 7. 4G SINR Radio Quality Progression (SINR >= 5 -> SINR >= 10 -> SINR >= 15)
+    const sinrChartEl = document.getElementById("chart-4g-sinr");
+    if (sinrChartEl) {
+        createProgressionLineChart("chart-4g-sinr", {
+            labels: [">= 5 dB (Fair / Low MCS)", ">= 10 dB (Good / Nominal)", ">= 15 dB (Peak 64/256QAM)"],
+            datasets: operators.map(op => ({
+                label: op,
+                data: [
+                    tbls.table_4g.rows[8] ? parseVal(tbls.table_4g.rows[8].values[op]) : null,
+                    tbls.table_4g.rows[7] ? parseVal(tbls.table_4g.rows[7].values[op]) : null,
+                    tbls.table_4g.rows[6] ? parseVal(tbls.table_4g.rows[6].values[op]) : null
+                ],
+                borderColor: OPERATOR_COLORS[op]?.border || "#070736",
+                backgroundColor: OPERATOR_COLORS[op]?.bg || "rgba(7, 7, 54, 0.15)"
+            }))
+        });
+    }
 }
 
 function parseVal(v) {

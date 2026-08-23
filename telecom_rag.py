@@ -111,8 +111,8 @@ def generate_telecom_digest(analytics_data):
     
     # 1. Executive Benchmark Pass Rates
     summary.append("### 1. SUMMARY OF PASS RATES (COMPLIANCE TO RF TARGETS)")
-    summary.append("| Operator | 2G RxLev (>= -92dBm) | 2G RxQual (0-2) | 3G RSCP (>= -95dBm) | 3G Ec/No (>= -15dB) | 4G RSRP (>= -95dBm) | 4G RSRQ (>= -15dB) |")
-    summary.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
+    summary.append("| Operator | 2G RxLev (>= -92dBm) | 2G RxQual (0-2) | 3G RSCP (>= -95dBm) | 3G Ec/No (>= -15dB) | 4G RSRP (>= -95dBm) | 4G RSRQ (>= -15dB) | 4G SINR (>= 10dB) |")
+    summary.append("| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |")
     
     op_scores = {op: [] for op in operators}
     
@@ -123,13 +123,14 @@ def generate_telecom_digest(analytics_data):
         ecno_p = analytics_data.get("3G_ECLO", {}).get(op, {}).get("pass_rate_pct", "N/A")
         rsrp_p = analytics_data.get("4G_RSRP", {}).get(op, {}).get("pass_rate_pct", "N/A")
         rsrq_p = analytics_data.get("4G_RSRQ", {}).get(op, {}).get("pass_rate_pct", "N/A")
+        sinr_p = analytics_data.get("4G_SINR", {}).get(op, {}).get("pass_rate_pct", "N/A")
         
         # Calculate composite score for ranking
-        numeric_scores = [v for v in [rxlev_p, rxqual_p, rscp_p, ecno_p, rsrp_p, rsrq_p] if isinstance(v, (int, float))]
+        numeric_scores = [v for v in [rxlev_p, rxqual_p, rscp_p, ecno_p, rsrp_p, rsrq_p, sinr_p] if isinstance(v, (int, float))]
         avg_score = round(sum(numeric_scores) / len(numeric_scores), 2) if numeric_scores else 0
         op_scores[op] = avg_score
         
-        summary.append(f"| **{op}** | {rxlev_p}% | {rxqual_p}% | {rscp_p}% | {ecno_p}% | {rsrp_p}% | {rsrq_p}% |")
+        summary.append(f"| **{op}** | {rxlev_p}% | {rxqual_p}% | {rscp_p}% | {ecno_p}% | {rsrp_p}% | {rsrq_p}% | {sinr_p}% |")
         
     # Operator Ranking
     ranked_ops = sorted(op_scores.items(), key=lambda x: x[1], reverse=True)
