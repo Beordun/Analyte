@@ -733,7 +733,7 @@ function createProgressionLineChart(canvasId, chartData) {
             scales: {
                 x: {
                     grid: { color: 'rgba(17, 24, 39, 0.08)' },
-                    ticks: { color: '#6b7280', font: { family: 'Roboto', weight: 600, size: '0.6875rem' } }
+                    ticks: { color: '#6b7280', font: { family: 'Bricolage Grotesque', weight: 600, size: '0.6875rem' } }
                 },
                 y: {
                     min: 0,
@@ -752,14 +752,14 @@ function createProgressionLineChart(canvasId, chartData) {
                         boxWidth: 14,
                         padding: 12,
                         color: '#4B5563',
-                        font: { size: '0.6875rem', family: 'Roboto', weight: 600 }
+                        font: { size: '0.6875rem', family: 'Bricolage Grotesque', weight: 600 }
                     }
                 },
                 tooltip: {
                     backgroundColor: 'rgba(255, 255, 255, 0.95)',
                     titleColor: '#111827',
                     bodyColor: '#111827',
-                    titleFont: { family: 'Roboto', weight: 700 },
+                    titleFont: { family: 'Bricolage Grotesque', weight: 700 },
                     bodyFont: { family: 'JetBrains Mono' },
                     borderColor: 'rgba(17, 24, 39, 0.5)',
                     borderWidth: 1,

@@ -2,7 +2,7 @@
  * tokens/typography.css
  *
  * Generated from design-tokens.tokens.json
- * Source: Roboto type scale — 15 roles across Display, Headline, Title, Body, Label.
+ * Source: Bricolage Grotesque type scale — 15 roles across Display, Headline, Title, Body, Label.
  *
  * USAGE
  * ─────
@@ -23,7 +23,7 @@
 :root {
 
   /* ── Base ────────────────────────────────────────────────── */
-  --type-font-family-base: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --type-font-family-base: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --type-base-size: 1rem; /* 16px */
 
   /* ── 4-Point Spacing Scale ───────────────────────────────── */

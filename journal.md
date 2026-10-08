@@ -85,7 +85,7 @@ Early dashboard iterations had fragmented styling, mismatched colour schemes for
 ### The Alternative Solution
 I established a design token workflow. I mapped tokens from `design-tokens.tokens.json` into CSS custom properties in `tokens/typography.css` and `web/index.css`. This gave the dashboard a unified visual identity:
 - Standardised brand colours for each operator (MTN Yellow, Airtel Red, Glo Green, 9mobile Lime).
-- A clear typography scale using modern typefaces (Roboto and JetBrains Mono).
+- A clear typography scale using modern typefaces (Bricolage Grotesque and JetBrains Mono).
 - Consistent elevation layers, card borders, and responsive grid layouts.
 
 ---

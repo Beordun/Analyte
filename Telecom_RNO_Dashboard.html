@@ -6,13 +6,13 @@
     <title>Telecom Drive Test Audit Suite | 2G, 3G, 4G Benchmark Calculator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
 /**
  * tokens/typography.css
  *
  * Generated from design-tokens.tokens.json
- * Source: Roboto type scale — 15 roles across Display, Headline, Title, Body, Label.
+ * Source: Bricolage Grotesque type scale — 15 roles across Display, Headline, Title, Body, Label.
  *
  * USAGE
  * ─────
@@ -33,7 +33,7 @@
 :root {
 
   /* ── Base ────────────────────────────────────────────────── */
-  --type-font-family-base: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --type-font-family-base: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --type-base-size: 1rem; /* 16px */
 
   /* ── 4-Point Spacing Scale ───────────────────────────────── */
@@ -331,50 +331,115 @@
 
 </style>
     <style>
+/**
+ * Ranalyte AI - Material Design 3 (M3) Design System
+ * Primary Colour: Pure Black (#000000)
+ * Typography: Bricolage Grotesque (Primary) & JetBrains Mono (Code / Tabular Metrics)
+ * Grid: 4-Point Design Method (all dimensions, paddings, margins, line-heights are multiples of 4px)
+ */
+
 :root {
-    /* ── Background & Surfaces ─────────────────────────── */
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #F8F9FB;
-    --bg-card: #FFFFFF;
-    --bg-card-hover: #F3F4F6;
+    /* ── M3 Core Colour Tokens (Primary: Pure Black) ───────────── */
+    --md-sys-color-primary: #000000;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-primary-container: #1F1F24;
+    --md-sys-color-on-primary-container: #FFFFFF;
 
-    /* ── Strokes (soft, 0.5 opacity) ───────────────────── */
-    --stroke-color: rgba(17, 24, 39, 0.15);
-    --stroke-strong: rgba(17, 24, 39, 0.35);
-    --border-color: var(--stroke-color);
-    --border-highlight: rgba(7, 7, 54, 0.4);
+    /* ── M3 Surface & Background Tonal Hierarchy ────────────────── */
+    --md-sys-color-surface: #FFFFFF;
+    --md-sys-color-surface-dim: #F4F4F7;
+    --md-sys-color-surface-bright: #FFFFFF;
+    --md-sys-color-surface-container-lowest: #FFFFFF;
+    --md-sys-color-surface-container-low: #F8F8FA;
+    --md-sys-color-surface-container: #F1F1F5;
+    --md-sys-color-surface-container-high: #EAEAEF;
+    --md-sys-color-surface-container-highest: #E2E2E8;
 
-    /* ── Text ──────────────────────────────────────────── */
-    --text-primary: #111827;
-    --text-secondary: #4B5563;
-    --text-muted: #9CA3AF;
+    /* ── M3 Typography & Content Colours ───────────────────────── */
+    --md-sys-color-on-surface: #0E0E10;
+    --md-sys-color-on-surface-variant: #44474E;
+    --md-sys-color-outline: #74777F;
+    --md-sys-color-outline-variant: #D4D7DF;
+    --md-sys-color-inverse-surface: #1E1E22;
+    --md-sys-color-inverse-on-surface: #F5F5F9;
 
-    /* ── App Brand & Accent (Theme Color: #070736) ─────── */
-    --accent-primary: #070736;
-    --accent-hover: #121258;
-    --accent-glow: rgba(7, 7, 54, 0.25);
-    --sidebar-bg: #070736;
-    --sidebar-text: #D1D5DB;
-    --sidebar-text-muted: #9CA3AF;
+    /* ── App Semantics & Legacy Aliases ────────────────────────── */
+    --bg-primary: var(--md-sys-color-surface);
+    --bg-secondary: var(--md-sys-color-surface-container-low);
+    --bg-card: var(--md-sys-color-surface-container-lowest);
+    --bg-card-hover: var(--md-sys-color-surface-container);
+    --stroke-color: var(--md-sys-color-outline-variant);
+    --stroke-strong: var(--md-sys-color-outline);
+    --border-color: var(--md-sys-color-outline-variant);
+    --border-highlight: #000000;
 
-    /* ── Status ────────────────────────────────────────── */
-    --success: #10b981;
-    --success-bg: rgba(16, 185, 129, 0.12);
-    --warning: #f59e0b;
-    --warning-bg: rgba(245, 158, 11, 0.12);
-    --danger: #ef4444;
-    --danger-bg: rgba(239, 68, 68, 0.12);
-    --info: #0284c7;
+    --text-primary: var(--md-sys-color-on-surface);
+    --text-secondary: var(--md-sys-color-on-surface-variant);
+    --text-muted: #8E9199;
+
+    /* ── Accent & Sidebar (Pure Deep Black M3 Theme) ───────────── */
+    --accent-primary: #000000;
+    --accent-hover: #1E1E22;
+    --accent-glow: rgba(0, 0, 0, 0.16);
+    --sidebar-bg: #000000;
+    --sidebar-text: #E4E4E8;
+    --sidebar-text-muted: #8E9199;
+
+    /* ── M3 Semantic Status Tokens ─────────────────────────────── */
+    --success: #059669;
+    --success-bg: rgba(5, 150, 105, 0.12);
+    --warning: #D97706;
+    --warning-bg: rgba(217, 119, 6, 0.12);
+    --danger: #DC2626;
+    --danger-bg: rgba(220, 38, 38, 0.12);
+    --info: #0284C7;
     --info-bg: rgba(2, 132, 199, 0.12);
 
-    /* ── Radius (rem) ──────────────────────────────────── */
-    --radius-sm: 0.5rem;
-    --radius-md: 0.75rem;
-    --radius-lg: 1rem;
+    /* ── 4-Point Spacing Scale (multiples of 4px / 0.25rem) ──────── */
+    --space-1:  0.25rem;   /*  4px */
+    --space-2:  0.5rem;    /*  8px */
+    --space-3:  0.75rem;   /* 12px */
+    --space-4:  1rem;      /* 16px */
+    --space-5:  1.25rem;   /* 20px */
+    --space-6:  1.5rem;    /* 24px */
+    --space-7:  1.75rem;   /* 28px */
+    --space-8:  2rem;      /* 32px */
+    --space-9:  2.25rem;   /* 36px */
+    --space-10: 2.5rem;    /* 40px */
+    --space-11: 2.75rem;   /* 44px */
+    --space-12: 3rem;      /* 48px */
+    --space-14: 3.5rem;    /* 56px */
+    --space-16: 4rem;      /* 64px */
+    --space-18: 4.5rem;    /* 72px */
+    --space-20: 5rem;      /* 80px */
+    --space-24: 6rem;      /* 96px */
 
-    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* ── M3 Shape System (4-Point Aligned Radii) ────────────────── */
+    --m3-shape-none: 0px;
+    --m3-shape-xs:   0.25rem; /*  4px */
+    --m3-shape-sm:   0.5rem;  /*  8px */
+    --m3-shape-md:   0.75rem; /* 12px */
+    --m3-shape-lg:   1rem;    /* 16px */
+    --m3-shape-xl:   1.75rem; /* 28px */
+    --m3-shape-full: 9999px;  /* Pill */
+
+    --radius-sm: var(--m3-shape-sm);
+    --radius-md: var(--m3-shape-lg);
+    --radius-lg: var(--m3-shape-xl);
+
+    /* ── M3 Elevation Shadows ──────────────────────────────────── */
+    --m3-elevation-0: none;
+    --m3-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+    --m3-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+    --m3-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.08), 0px 1px 3px 0px rgba(0, 0, 0, 0.05);
+
+    /* ── Fonts & Motion ────────────────────────────────────────── */
+    --font-family-primary: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family-mono: 'JetBrains Mono', monospace;
+    --transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
+/* ── Global Reset ────────────────────────────────────────────── */
 * {
     margin: 0;
     padding: 0;
@@ -382,26 +447,27 @@
 }
 
 body {
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    font-family: var(--font-family-primary);
+    background-color: var(--md-sys-color-surface-dim);
+    color: var(--md-sys-color-on-surface);
     min-height: 100vh;
     display: flex;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* App Container */
+/* ── App Layout Container ────────────────────────────────────── */
 .app-container {
     display: flex;
     width: 100vw;
     min-height: 100vh;
 }
 
-/* Sidebar */
+/* ── M3 Navigation Sidebar (Pitch Black High-Contrast) ────────── */
 .sidebar {
-    width: 16.875rem;
+    width: 17.5rem; /* 280px = 70 * 4px */
     background-color: var(--sidebar-bg);
-    border-right: 0.0625rem solid rgba(255, 255, 255, 0.1);
+    border-right: 0.0625rem solid rgba(255, 255, 255, 0.12);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -409,223 +475,254 @@ body {
 }
 
 .brand {
-    padding: 1.5rem 1.125rem;
+    padding: var(--space-6) var(--space-5); /* 24px 20px */
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-3); /* 12px */
     border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.12);
 }
 
 .brand-icon {
-    width: 2.625rem;
-    height: 2.625rem;
-    background: linear-gradient(135deg, #1b1b6d, #070736);
+    width: 2.75rem; /* 44px */
+    height: 2.75rem; /* 44px */
+    background: #FFFFFF;
     border: 0.0625rem solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-md);
+    border-radius: var(--m3-shape-md); /* 12px */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.4);
+    color: #000000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .brand-icon svg {
-    width: 1.375rem;
-    height: 1.375rem;
+    width: 1.5rem; /* 24px */
+    height: 1.5rem; /* 24px */
 }
 
 .brand-text h2 {
-    font-size: 1.1rem;
+    font-family: var(--font-family-primary);
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.5rem; /* 24px */
     font-weight: 700;
     letter-spacing: -0.02em;
     color: #FFFFFF;
 }
 
 .brand-text span {
-    font-size: 0.72rem;
+    font-family: var(--font-family-primary);
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem; /* 16px */
     color: var(--sidebar-text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    font-weight: 600;
 }
 
 .nav-menu {
-    padding: 1.125rem 0.625rem;
+    padding: var(--space-4) var(--space-3); /* 16px 12px */
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-1); /* 4px */
     flex: 1;
 }
 
+/* M3 Navigation Item with Full Pill Active Indicator */
 .nav-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.6875rem 0.875rem;
+    gap: var(--space-3); /* 12px */
+    padding: 0 var(--space-4); /* 16px */
+    height: 3rem; /* 48px */
     background: transparent;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: var(--m3-shape-full); /* Pill */
     color: var(--sidebar-text);
-    font-size: 0.88rem;
+    font-family: var(--font-family-primary);
+    font-size: 0.9375rem; /* 15px */
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
     text-align: left;
+    position: relative;
 }
 
 .nav-item svg {
-    width: 1.125rem;
-    height: 1.125rem;
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
     opacity: 0.85;
+    flex-shrink: 0;
 }
 
 .nav-item:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.1);
     color: #FFFFFF;
 }
 
+/* M3 High-Contrast Active Pill: Pure White Pill with Black Typography */
 .nav-item.active {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
-    color: #FFFFFF;
-    border-left: 0.1875rem solid #38bdf8;
-    font-weight: 600;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .nav-item.active svg {
     opacity: 1;
-    color: #38bdf8;
+    color: #000000;
 }
 
 .sidebar-footer {
-    padding: 1.125rem 0.875rem;
+    padding: var(--space-4) var(--space-4); /* 16px 16px */
     border-top: 0.0625rem solid rgba(255, 255, 255, 0.12);
 }
 
 .cluster-badge {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: var(--space-3); /* 12px */
     background-color: rgba(255, 255, 255, 0.06);
-    padding: 0.625rem 0.75rem;
-    border-radius: var(--radius-sm);
-    border: 0.0625rem solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-3) var(--space-4); /* 12px 16px */
+    border-radius: var(--m3-shape-md); /* 12px */
+    border: 0.0625rem solid rgba(255, 255, 255, 0.12);
     color: #FFFFFF;
 }
 
 .status-dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
+    width: 0.5rem; /* 8px */
+    height: 0.5rem; /* 8px */
+    border-radius: var(--m3-shape-full);
 }
 
 .status-dot.online {
-    background-color: var(--success);
-    box-shadow: 0 0 0.625rem var(--success);
+    background-color: #10B981;
+    box-shadow: 0 0 8px #10B981;
 }
 
 .cluster-badge strong {
-    font-size: 0.8rem;
+    font-family: var(--font-family-primary);
+    font-size: 0.8125rem; /* 13px */
+    line-height: 1rem;
     color: #FFFFFF;
 }
 
 .cluster-badge small {
-    font-size: 0.7rem;
+    font-family: var(--font-family-primary);
+    font-size: 0.6875rem; /* 11px */
+    line-height: 1rem;
     color: var(--sidebar-text-muted);
 }
 
-/* Main Content */
+/* ── Main Content Area ───────────────────────────────────────── */
 .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    padding: 1.75rem 2rem;
+    padding: var(--space-7) var(--space-8); /* 28px 32px */
 }
 
-/* Top Header */
+/* ── Top Header ──────────────────────────────────────────────── */
 .top-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-6); /* 24px */
 }
 
 .header-title h1 {
-    font-size: 1.55rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-family: var(--font-family-primary);
+    font-size: 1.75rem; /* 28px */
+    line-height: 2.25rem; /* 36px */
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--md-sys-color-on-surface);
 }
 
 .header-title p {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    margin-top: 0.25rem;
+    font-family: var(--font-family-primary);
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: var(--space-1); /* 4px */
 }
 
 .header-actions {
     display: flex;
-    gap: 0.75rem;
+    gap: var(--space-3); /* 12px */
 }
 
-/* Buttons */
+/* ── M3 Buttons (Pill Shapes, Black Primary) ─────────────────── */
 .btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5625rem 1rem;
-    font-size: 0.86rem;
+    justify-content: center;
+    gap: var(--space-2); /* 8px */
+    height: 2.5rem; /* 40px = 10 * 4px */
+    padding: 0 var(--space-6); /* 24px */
+    font-family: var(--font-family-primary);
+    font-size: 0.875rem; /* 14px */
     font-weight: 600;
-    border-radius: var(--radius-sm);
+    border-radius: var(--m3-shape-full); /* Pill */
     border: none;
     cursor: pointer;
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .btn svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.125rem; /* 18px */
+    height: 1.125rem; /* 18px */
 }
 
+/* Primary Button: Solid Black with High Elevation Hover */
 .btn-primary {
-    background: linear-gradient(135deg, #070736, #1b1b6d);
-    color: #fff;
-    box-shadow: 0 0.25rem 0.875rem var(--accent-glow);
+    background-color: #000000;
+    color: #FFFFFF;
+    box-shadow: var(--m3-elevation-1);
 }
 
 .btn-primary:hover {
-    filter: brightness(1.15);
-    transform: translateY(-0.0625rem);
+    background-color: #212124;
+    box-shadow: var(--m3-elevation-2);
+    transform: translateY(-1px);
 }
 
+/* Secondary Button: M3 Tonal Surface Container */
 .btn-secondary {
-    background-color: rgba(17, 24, 39, 0.05);
-    color: var(--text-primary);
-    border: 0.0625rem solid var(--border-color);
+    background-color: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface);
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
 }
 
 .btn-secondary:hover {
-    background-color: rgba(17, 24, 39, 0.08);
+    background-color: var(--md-sys-color-surface-container-highest);
+    color: #000000;
 }
 
+/* Outlined Button: M3 Outline with Pill Radius */
 .btn-outline {
     background: transparent;
-    color: var(--text-secondary);
-    border: 0.0625rem solid var(--border-color);
+    color: var(--md-sys-color-on-surface);
+    border: 0.0625rem solid var(--md-sys-color-outline);
 }
 
 .btn-outline:hover {
-    background-color: rgba(17, 24, 39, 0.05);
-    color: var(--text-primary);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: #000000;
 }
 
+/* Small Button */
 .btn-sm {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.78rem;
+    height: 2rem; /* 32px = 8 * 4px */
+    padding: 0 var(--space-4); /* 16px */
+    font-size: 0.75rem; /* 12px */
 }
 
-/* Tab Panes */
+/* ── Tab Panes ───────────────────────────────────────────────── */
 .tab-pane {
     display: none;
-    animation: fadeIn 0.25s ease-out;
+    animation: fadeIn 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .tab-pane.active {
@@ -633,36 +730,36 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(0.375rem); }
+    from { opacity: 0; transform: translateY(0.5rem); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Alert Banner */
+/* ── M3 Alert Cards ──────────────────────────────────────────── */
 .alert-card {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius-md);
-    margin-bottom: 1.375rem;
-    backdrop-filter: blur(0.75rem);
+    gap: var(--space-4); /* 16px */
+    padding: var(--space-4) var(--space-5); /* 16px 20px */
+    border-radius: var(--m3-shape-lg); /* 16px */
+    margin-bottom: var(--space-6); /* 24px */
     border: 0.0625rem solid transparent;
 }
 
 .alert-danger {
-    background: linear-gradient(90deg, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.04));
-    border-color: rgba(239, 68, 68, 0.3);
+    background-color: rgba(220, 38, 38, 0.08);
+    border-color: rgba(220, 38, 38, 0.25);
 }
 
 .alert-info {
-    background: linear-gradient(90deg, rgba(59, 130, 246, 0.12), rgba(59, 130, 246, 0.04));
-    border-color: rgba(59, 130, 246, 0.3);
+    background-color: rgba(2, 132, 199, 0.08);
+    border-color: rgba(2, 132, 199, 0.25);
 }
 
 .alert-icon svg {
-    width: 1.625rem;
-    height: 1.625rem;
+    width: 1.75rem; /* 28px */
+    height: 1.75rem; /* 28px */
     color: var(--danger);
+    flex-shrink: 0;
 }
 
 .alert-body {
@@ -670,100 +767,111 @@ body {
 }
 
 .alert-body h3 {
-    font-size: 0.92rem;
-    font-weight: 600;
+    font-family: var(--font-family-primary);
+    font-size: 0.9375rem; /* 15px */
+    font-weight: 700;
     color: var(--danger);
 }
 
 .alert-body p {
-    font-size: 0.83rem;
-    color: var(--text-secondary);
-    margin-top: 0.25rem;
+    font-family: var(--font-family-primary);
+    font-size: 0.8125rem; /* 13px */
+    line-height: 1.125rem;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: var(--space-1); /* 4px */
 }
 
 .alert-tag {
     background: var(--danger);
-    color: #fff;
-    padding: 0.375rem 0.875rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.85rem;
+    color: #FFFFFF;
+    padding: var(--space-1) var(--space-3); /* 4px 12px */
+    border-radius: var(--m3-shape-full); /* Pill */
+    font-family: var(--font-family-primary);
+    font-size: 0.8125rem;
     font-weight: 700;
     letter-spacing: 0.03em;
-    box-shadow: 0 0 0.9375rem rgba(239, 68, 68, 0.4);
 }
 
-/* Card Panel & Tables */
+/* ── M3 Card Panels (Outlined & Elevated Surface) ────────────── */
 .card-panel {
-    background-color: var(--bg-card);
-    border: 0.0625rem solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
+    background-color: var(--md-sys-color-surface);
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
+    border-radius: var(--m3-shape-lg); /* 16px */
+    padding: var(--space-6); /* 24px */
+    box-shadow: var(--m3-elevation-1);
 }
 
-.mt-4 { margin-top: 1.5rem; }
-.mt-2 { margin-top: 0.75rem; }
+.mt-4 { margin-top: var(--space-6); /* 24px */ }
+.mt-2 { margin-top: var(--space-3); /* 12px */ }
 
 .panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-4); /* 16px */
 }
 
 .table-title-box {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-3); /* 12px */
 }
 
 .panel-header h3 {
-    font-size: 1.05rem;
-    font-weight: 600;
+    font-family: var(--font-family-primary);
+    font-size: 1.125rem; /* 18px */
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
 }
 
+/* M3 Chips / Badges */
 .badge {
-    padding: 0.25rem 0.625rem;
-    border-radius: 0.375rem;
-    font-size: 0.75rem;
+    padding: var(--space-1) var(--space-3); /* 4px 12px */
+    border-radius: var(--m3-shape-full); /* Pill */
+    font-family: var(--font-family-primary);
+    font-size: 0.75rem; /* 12px */
     font-weight: 600;
 }
 
-.badge-info { background: var(--info-bg); color: #1d4ed8; }
-.badge-success { background: var(--success-bg); color: #047857; }
-.badge-danger { background: var(--danger-bg); color: #b91c1c; }
+.badge-info { background: var(--info-bg); color: #0284C7; }
+.badge-success { background: var(--success-bg); color: #059669; }
+.badge-danger { background: var(--danger-bg); color: #DC2626; }
 
 .tech-pill {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.1875rem 0.5rem;
-    border-radius: 0.25rem;
-    letter-spacing: 0.05em;
+    font-family: var(--font-family-primary);
+    font-size: 0.6875rem; /* 11px */
+    font-weight: 800;
+    padding: 0.1875rem var(--space-2); /* 3px 8px */
+    border-radius: var(--m3-shape-sm); /* 8px */
+    letter-spacing: 0.06em;
 }
 
-.tech-2g { background: rgba(6, 182, 212, 0.15); color: #0e7490; }
-.tech-3g { background: rgba(168, 85, 247, 0.15); color: #7e22ce; }
-.tech-4g { background: rgba(7, 7, 54, 0.1); color: #070736; border: 0.0625rem solid rgba(7, 7, 54, 0.2); }
+.tech-2g { background: rgba(6, 182, 212, 0.12); color: #0E7490; }
+.tech-3g { background: rgba(168, 85, 247, 0.12); color: #7E22CE; }
+.tech-4g { background: rgba(0, 0, 0, 0.08); color: #000000; border: 0.0625rem solid rgba(0, 0, 0, 0.2); }
 
-/* Telecom Exact Tables Grid */
+/* ── M3 Tabular Data Grid ────────────────────────────────────── */
 .table-responsive {
     overflow-x: auto;
-    border-radius: var(--radius-sm);
-    border: 0.0625rem solid var(--border-color);
+    border-radius: var(--m3-shape-md); /* 12px */
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
+    background-color: #FFFFFF;
 }
 
 .styled-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.88rem;
+    font-size: 0.875rem; /* 14px */
     text-align: left;
 }
 
 .telecom-grid-table th {
-    padding: 0.75rem 1rem;
-    background-color: rgba(17, 24, 39, 0.04);
-    color: var(--text-primary);
-    font-weight: 600;
-    border: 0.0625rem solid var(--border-color);
+    padding: var(--space-3) var(--space-4); /* 12px 16px */
+    background-color: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
+    font-family: var(--font-family-primary);
+    font-weight: 700;
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
     text-align: center;
 }
 
@@ -773,107 +881,117 @@ body {
 }
 
 .telecom-grid-table td {
-    padding: 0.75rem 1rem;
-    border: 0.0625rem solid var(--border-color);
-    color: var(--text-primary);
+    padding: var(--space-3) var(--space-4); /* 12px 16px */
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
+    color: var(--md-sys-color-on-surface);
     text-align: center;
     font-weight: 500;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
+    font-family: var(--font-family-mono);
+    font-size: 0.8125rem; /* 13px */
 }
 
 .telecom-grid-table td:first-child {
     text-align: left;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-family-primary);
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--md-sys-color-on-surface);
 }
 
 .telecom-grid-table tr:hover td {
-    background-color: rgba(17, 24, 39, 0.03);
+    background-color: var(--md-sys-color-surface-container-low);
 }
 
-/* Upload Dropzone */
+/* ── Upload Dropzone (M3 Container with High-Contrast Primary) ── */
 .upload-dropzone {
-    border: 0.125rem dashed rgba(7, 7, 54, 0.35);
-    background: rgba(7, 7, 54, 0.02);
-    border-radius: var(--radius-md);
-    padding: 3rem 1.5rem;
+    border: 0.125rem dashed rgba(0, 0, 0, 0.25);
+    background: var(--md-sys-color-surface-container-low);
+    border-radius: var(--m3-shape-xl); /* 28px */
+    padding: var(--space-12) var(--space-6); /* 48px 24px */
     text-align: center;
     cursor: pointer;
     transition: var(--transition);
 }
 
 .upload-dropzone:hover {
-    border-color: var(--accent-primary);
-    background: rgba(7, 7, 54, 0.06);
+    border-color: #000000;
+    background: var(--md-sys-color-surface-container);
+    transform: scale(1.005);
 }
 
 .dropzone-icon {
-    width: 3rem;
-    height: 3rem;
-    color: var(--accent-primary);
-    margin-bottom: 0.75rem;
+    width: 3.5rem; /* 56px = 14 * 4px */
+    height: 3.5rem;
+    color: #000000;
+    margin-bottom: var(--space-3); /* 12px */
 }
 
 .upload-dropzone h4 {
-    font-size: 1.05rem;
-    margin-bottom: 0.375rem;
+    font-family: var(--font-family-primary);
+    font-size: 1.125rem; /* 18px */
+    font-weight: 700;
+    margin-bottom: var(--space-1); /* 4px */
+    color: var(--md-sys-color-on-surface);
 }
 
 .upload-dropzone p {
-    font-size: 0.83rem;
+    font-family: var(--font-family-primary);
+    font-size: 0.875rem; /* 14px */
     color: var(--text-muted);
 }
 
-/* Charts Grid */
+/* ── Charts Grid ─────────────────────────────────────────────── */
 .charts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(27.5rem, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+    gap: var(--space-6); /* 24px */
 }
 
 .chart-card {
-    background-color: var(--bg-card);
-    border: 0.0625rem solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1.25rem;
+    background-color: var(--md-sys-color-surface);
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
+    border-radius: var(--m3-shape-lg); /* 16px */
+    padding: var(--space-5); /* 20px */
+    box-shadow: var(--m3-elevation-1);
 }
 
 .chart-header h4 {
-    font-size: 0.92rem;
-    font-weight: 600;
+    font-family: var(--font-family-primary);
+    font-size: 1rem; /* 16px */
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
 }
 
 .chart-header small {
+    font-family: var(--font-family-primary);
     color: var(--text-muted);
-    font-size: 0.78rem;
+    font-size: 0.8125rem; /* 13px */
 }
 
 .chart-container {
     position: relative;
-    height: 15.625rem;
-    margin-top: 1rem;
+    height: 16rem; /* 256px = 64 * 4px */
+    margin-top: var(--space-4); /* 16px */
 }
 
-/* RAG Controls & Reports */
+/* ── RAG Controls & Reports (M3 Form Controls) ────────────────── */
 .rag-controls-card {
-    background-color: var(--bg-card);
-    border: 0.0625rem solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
+    background-color: var(--md-sys-color-surface);
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
+    border-radius: var(--m3-shape-lg); /* 16px */
+    padding: var(--space-6); /* 24px */
+    box-shadow: var(--m3-elevation-1);
 }
 
 .controls-row {
     display: flex;
-    gap: 1.25rem;
+    gap: var(--space-5); /* 20px */
     align-items: flex-end;
 }
 
 .control-group {
     display: flex;
     flex-direction: column;
-    gap: 0.375rem;
+    gap: var(--space-1); /* 4px */
     flex: 1;
 }
 
@@ -882,26 +1000,29 @@ body {
 }
 
 .control-group label {
-    font-size: 0.8rem;
+    font-family: var(--font-family-primary);
+    font-size: 0.8125rem; /* 13px */
     font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--md-sys-color-on-surface-variant);
 }
 
+/* M3 Outlined Form Field */
 .form-select, .form-control {
     background-color: #FFFFFF;
-    border: 0.0625rem solid var(--border-color);
-    color: var(--text-primary);
-    padding: 0.625rem 0.875rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.88rem;
-    font-family: inherit;
+    border: 0.0625rem solid var(--md-sys-color-outline);
+    color: var(--md-sys-color-on-surface);
+    padding: 0 var(--space-4); /* 16px */
+    height: 2.75rem; /* 44px = 11 * 4px */
+    border-radius: var(--m3-shape-sm); /* 8px */
+    font-size: 0.875rem; /* 14px */
+    font-family: var(--font-family-primary);
     outline: none;
     transition: var(--transition);
 }
 
 .form-select:focus, .form-control:focus {
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 0 0.125rem var(--accent-glow);
+    border-color: #000000;
+    box-shadow: 0 0 0 0.125rem rgba(0, 0, 0, 0.15);
 }
 
 .flex-end {
@@ -909,312 +1030,325 @@ body {
 }
 
 .report-card {
-    background-color: var(--bg-card);
-    border: 0.0625rem solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1.75rem;
-    min-height: 25rem;
+    background-color: var(--md-sys-color-surface);
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
+    border-radius: var(--m3-shape-lg); /* 16px */
+    padding: var(--space-7); /* 28px */
+    min-height: 25rem; /* 400px = 100 * 4px */
+    box-shadow: var(--m3-elevation-1);
 }
 
 .report-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 1.125rem;
-    border-bottom: 0.0625rem solid var(--border-color);
-    margin-bottom: 1.375rem;
+    padding-bottom: var(--space-4); /* 16px */
+    border-bottom: 0.0625rem solid var(--md-sys-color-outline-variant);
+    margin-bottom: var(--space-5); /* 20px */
 }
 
 .report-title-box {
     display: flex;
     align-items: center;
-    gap: 0.875rem;
+    gap: var(--space-3); /* 12px */
 }
 
 .report-actions {
     display: flex;
-    gap: 0.625rem;
+    gap: var(--space-2); /* 8px */
 }
 
-/* Markdown Rendering Inside Report */
+/* ── Markdown Technical Document Rendering ───────────────────── */
 .markdown-body {
-    font-family: 'Roboto', sans-serif;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    font-size: 0.94rem;
+    font-family: var(--font-family-primary);
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 1.75;
+    font-size: 0.9375rem; /* 15px */
 }
 
 .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 {
-    color: var(--text-primary);
-    margin-top: 1.375rem;
-    margin-bottom: 0.625rem;
-    font-weight: 700;
+    font-family: var(--font-family-primary);
+    color: var(--md-sys-color-on-surface);
+    margin-top: var(--space-6); /* 24px */
+    margin-bottom: var(--space-2); /* 8px */
+    font-weight: 800;
 }
 
-.markdown-body h1 { font-size: 1.35rem; border-bottom: 0.0625rem solid var(--border-color); padding-bottom: 0.5rem; }
-.markdown-body h2 { font-size: 1.15rem; color: var(--accent-hover); }
-.markdown-body h3 { font-size: 1.02rem; }
+.markdown-body h1 {
+    font-size: 1.5rem; /* 24px */
+    border-bottom: 0.0625rem solid var(--md-sys-color-outline-variant);
+    padding-bottom: var(--space-2); /* 8px */
+}
+
+.markdown-body h2 {
+    font-size: 1.25rem; /* 20px */
+    color: #000000;
+}
+
+.markdown-body h3 {
+    font-size: 1.0625rem; /* 17px */
+}
 
 .markdown-body ul, .markdown-body ol {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
+    margin-left: var(--space-6); /* 24px */
+    margin-bottom: var(--space-4); /* 16px */
 }
 
 .markdown-body li {
-    margin-bottom: 0.375rem;
+    margin-bottom: var(--space-1); /* 4px */
 }
 
 .markdown-body blockquote {
-    background-color: rgba(7, 7, 54, 0.04);
-    border-left: 0.25rem solid var(--accent-primary);
-    padding: 0.75rem 1.125rem;
-    border-radius: var(--radius-sm);
-    margin: 1rem 0;
+    background-color: var(--md-sys-color-surface-container);
+    border-left: 0.25rem solid #000000;
+    padding: var(--space-3) var(--space-4); /* 12px 16px */
+    border-radius: var(--m3-shape-sm); /* 8px */
+    margin: var(--space-4) 0;
 }
 
 .markdown-body table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.25rem 0;
+    margin: var(--space-5) 0;
 }
 
 .markdown-body th, .markdown-body td {
-    padding: 0.625rem 0.875rem;
-    border: 0.0625rem solid var(--border-color);
+    padding: var(--space-2) var(--space-4); /* 8px 16px */
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
 }
 
 .markdown-body th {
-    background-color: rgba(17, 24, 39, 0.04);
-    color: var(--text-primary);
+    background-color: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
+    font-weight: 700;
 }
 
-/* Playbooks Grid */
+/* ── Playbooks Grid ──────────────────────────────────────────── */
 .playbooks-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(21.875rem, 1fr));
-    gap: var(--space-5, 1.25rem);
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    gap: var(--space-5); /* 20px */
 }
 
 .playbook-card {
-    background-color: var(--bg-card);
-    border: 0.0625rem solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: var(--space-5, 1.25rem);
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
+    background-color: var(--md-sys-color-surface);
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
+    border-radius: var(--m3-shape-lg); /* 16px */
+    padding: var(--space-5); /* 20px */
+    font-family: var(--font-family-primary);
+    box-shadow: var(--m3-elevation-1);
+    transition: var(--transition);
+}
+
+.playbook-card:hover {
+    box-shadow: var(--m3-elevation-2);
+    border-color: #000000;
 }
 
 .playbook-header h4 {
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
-    font-size: var(--type-title-medium-size, 1.125rem);
-    line-height: var(--type-title-medium-line-height, 1.688rem);
-    letter-spacing: var(--type-title-medium-letter-spacing, -0.023rem);
-    font-weight: 700;
-    margin-top: var(--space-2, 0.5rem);
-    margin-bottom: var(--space-2, 0.5rem);
-    color: var(--text-primary);
+    font-family: var(--font-family-primary);
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.5rem; /* 24px */
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    margin-top: var(--space-2); /* 8px */
+    margin-bottom: var(--space-2); /* 8px */
+    color: var(--md-sys-color-on-surface);
 }
 
 .playbook-content h5 {
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
-    font-size: var(--type-label-large-size, 0.875rem);
-    line-height: var(--type-label-large-line-height, 1.225rem);
-    letter-spacing: var(--type-label-large-letter-spacing, -0.009rem);
-    font-weight: 700;
-    color: var(--accent-hover);
-    margin-top: var(--space-3, 0.75rem);
-    margin-bottom: var(--space-1, 0.25rem);
+    font-family: var(--font-family-primary);
+    font-size: 0.8125rem; /* 13px */
+    line-height: 1.125rem;
+    font-weight: 800;
+    color: #000000;
+    margin-top: var(--space-3); /* 12px */
+    margin-bottom: var(--space-1); /* 4px */
     text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .playbook-content ul {
-    margin-left: var(--space-5, 1.25rem);
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
-    font-size: var(--type-body-small-size, 0.875rem);
-    line-height: var(--type-body-small-line-height, 1.313rem);
-    letter-spacing: var(--type-body-small-letter-spacing, -0.013rem);
-    color: var(--text-secondary);
+    margin-left: var(--space-5); /* 20px */
+    font-family: var(--font-family-primary);
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.375rem; /* 22px */
+    color: var(--md-sys-color-on-surface-variant);
 }
 
 .playbook-content p {
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
-    font-size: var(--type-body-small-size, 0.875rem);
-    line-height: var(--type-body-small-line-height, 1.313rem);
-    letter-spacing: var(--type-body-small-letter-spacing, -0.013rem);
-    color: var(--text-secondary);
+    font-family: var(--font-family-primary);
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    color: var(--md-sys-color-on-surface-variant);
 }
 
 .loading-spinner {
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 0.125rem solid rgba(17, 24, 39, 0.1);
-    border-top-color: var(--accent-primary);
-    border-radius: 50%;
+    width: 1.5rem; /* 24px */
+    height: 1.5rem; /* 24px */
+    border: 0.1875rem solid rgba(0, 0, 0, 0.1);
+    border-top-color: #000000;
+    border-radius: var(--m3-shape-full);
     animation: spin 0.8s linear infinite;
-    margin: 0.625rem auto;
+    margin: var(--space-3) auto;
 }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
-/* ── Dynamic RCA & Playbooks Scoring ─────────────────────────── */
-
-/* Summary strip at top of playbooks tab */
+/* ── Dynamic RCA & Playbooks Scoring (M3 Chips & Containers) ─── */
 .playbook-summary-strip {
     display: flex;
     align-items: center;
-    gap: var(--space-2, 0.5rem);
+    gap: var(--space-2); /* 8px */
     flex-wrap: wrap;
-    padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
-    background: var(--bg-card);
-    border: 0.0625rem solid var(--border-color);
-    border-radius: var(--radius-md);
-    margin-bottom: var(--space-5, 1.25rem);
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
+    padding: var(--space-3) var(--space-4); /* 12px 16px */
+    background: var(--md-sys-color-surface);
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
+    border-radius: var(--m3-shape-lg); /* 16px */
+    margin-bottom: var(--space-5); /* 20px */
+    font-family: var(--font-family-primary);
+    box-shadow: var(--m3-elevation-1);
 }
 
 .summary-pill {
     display: flex;
     align-items: center;
-    gap: var(--space-1, 0.25rem);
-    padding: 0.3125rem 0.75rem;
-    border-radius: 1.25rem;
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
-    font-size: var(--type-label-medium-size, 0.75rem);
-    line-height: var(--type-label-medium-line-height, 1.125rem);
-    letter-spacing: var(--type-label-medium-letter-spacing, -0.006rem);
+    gap: var(--space-1); /* 4px */
+    padding: var(--space-1) var(--space-3); /* 4px 12px */
+    border-radius: var(--m3-shape-full); /* Pill */
+    font-family: var(--font-family-primary);
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem;
     font-weight: 700;
 }
 
 .pill-critical {
-    background: rgba(239, 68, 68, 0.12);
-    color: #dc2626;
-    border: 0.0625rem solid rgba(239, 68, 68, 0.35);
+    background: rgba(220, 38, 38, 0.1);
+    color: #DC2626;
+    border: 0.0625rem solid rgba(220, 38, 38, 0.3);
 }
 
 .pill-warning {
-    background: rgba(245, 158, 11, 0.12);
-    color: #d97706;
-    border: 0.0625rem solid rgba(245, 158, 11, 0.35);
+    background: rgba(217, 119, 6, 0.1);
+    color: #D97706;
+    border: 0.0625rem solid rgba(217, 119, 6, 0.3);
 }
 
 .pill-ok {
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(5, 150, 105, 0.1);
     color: #059669;
-    border: 0.0625rem solid rgba(16, 185, 129, 0.3);
+    border: 0.0625rem solid rgba(5, 150, 105, 0.3);
 }
 
-/* Severity badge on each playbook card header */
+/* Severity badge */
 .severity-badge {
-    padding: 0.1875rem 0.5625rem;
-    border-radius: 0.25rem;
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
-    font-size: var(--type-label-small-size, 0.688rem);
-    line-height: var(--type-label-small-line-height, 1.031rem);
-    letter-spacing: var(--type-label-small-letter-spacing, -0.003rem);
+    padding: var(--space-1) var(--space-2); /* 4px 8px */
+    border-radius: var(--m3-shape-sm); /* 8px */
+    font-family: var(--font-family-primary);
+    font-size: 0.6875rem; /* 11px */
+    line-height: 1rem;
     font-weight: 800;
     text-transform: uppercase;
 }
 
 .sev-critical {
-    background: rgba(239, 68, 68, 0.18);
-    color: #dc2626;
-    border: 0.0625rem solid rgba(239, 68, 68, 0.4);
+    background: rgba(220, 38, 38, 0.15);
+    color: #DC2626;
+    border: 0.0625rem solid rgba(220, 38, 38, 0.35);
 }
 
 .sev-warning {
-    background: rgba(245, 158, 11, 0.16);
-    color: #d97706;
-    border: 0.0625rem solid rgba(245, 158, 11, 0.4);
+    background: rgba(217, 119, 6, 0.15);
+    color: #D97706;
+    border: 0.0625rem solid rgba(217, 119, 6, 0.35);
 }
 
 .sev-ok {
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(5, 150, 105, 0.1);
     color: #059669;
-    border: 0.0625rem solid rgba(16, 185, 129, 0.3);
+    border: 0.0625rem solid rgba(5, 150, 105, 0.3);
 }
 
-/* Live operator scoring section inside card */
+/* Live operator scoring inside card */
 .playbook-operator-scoring {
-    margin: var(--space-3, 0.75rem) 0;
-    padding: var(--space-3, 0.75rem);
-    background: rgba(17, 24, 39, 0.04);
-    border-radius: var(--radius-sm);
-    border: 0.0625rem solid var(--border-color);
+    margin: var(--space-3) 0; /* 12px */
+    padding: var(--space-3); /* 12px */
+    background: var(--md-sys-color-surface-container);
+    border-radius: var(--m3-shape-md); /* 12px */
+    border: 0.0625rem solid var(--md-sys-color-outline-variant);
 }
 
 .scoring-label {
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
-    font-size: var(--type-label-medium-size, 0.75rem);
-    line-height: var(--type-label-medium-line-height, 1.125rem);
-    letter-spacing: var(--type-label-medium-letter-spacing, -0.006rem);
-    font-weight: 700;
+    font-family: var(--font-family-primary);
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem;
+    font-weight: 800;
     text-transform: uppercase;
     color: var(--text-muted);
-    margin-bottom: var(--space-2, 0.5rem);
+    margin-bottom: var(--space-2); /* 8px */
 }
 
 .op-chips-container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2, 0.5rem);
+    gap: var(--space-2); /* 8px */
 }
 
-/* One chip per failing operator */
 .op-fail-chip {
-    padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
-    border-radius: 0.375rem;
+    padding: var(--space-2) var(--space-3); /* 8px 12px */
+    border-radius: var(--m3-shape-sm); /* 8px */
     border: 0.0625rem solid;
     display: flex;
     flex-direction: column;
-    gap: var(--space-1, 0.25rem);
+    gap: var(--space-1); /* 4px */
+    background: #FFFFFF;
 }
 
 .op-fail-chip > span {
-    font-size: var(--type-label-large-size, 0.875rem);
-    line-height: var(--type-label-large-line-height, 1.225rem);
-    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem;
+    font-family: var(--font-family-mono);
 }
 
 .op-fail-details {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-1, 0.25rem);
+    gap: var(--space-1); /* 4px */
 }
 
 .fail-detail {
-    font-size: var(--type-label-medium-size, 0.75rem);
-    line-height: var(--type-label-medium-line-height, 1.125rem);
-    padding: 0.125rem 0.5rem;
-    border-radius: 0.25rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem;
+    padding: 0.125rem var(--space-2); /* 2px 8px */
+    border-radius: var(--m3-shape-xs); /* 4px */
+    font-family: var(--font-family-mono);
 }
 
 .fail-crit {
-    background: rgba(239, 68, 68, 0.12);
-    color: #dc2626;
-    border: 0.0625rem solid rgba(239, 68, 68, 0.25);
+    background: rgba(220, 38, 38, 0.12);
+    color: #DC2626;
+    border: 0.0625rem solid rgba(220, 38, 38, 0.25);
 }
 
 .fail-warn {
-    background: rgba(245, 158, 11, 0.1);
-    color: #d97706;
-    border: 0.0625rem solid rgba(245, 158, 11, 0.25);
+    background: rgba(217, 119, 6, 0.1);
+    color: #D97706;
+    border: 0.0625rem solid rgba(217, 119, 6, 0.25);
 }
 
-/* Engineering actions as ordered list */
 .playbook-content ol {
-    padding-left: var(--space-5, 1.25rem);
-    margin: var(--space-2, 0.5rem) 0 0;
+    padding-left: var(--space-5); /* 20px */
+    margin: var(--space-2) 0 0; /* 8px */
 }
 
 .playbook-content ol li {
-    font-family: var(--type-font-family-base, 'Roboto', sans-serif);
-    font-size: var(--type-body-small-size, 0.875rem);
-    line-height: var(--type-body-small-line-height, 1.313rem);
-    letter-spacing: var(--type-body-small-letter-spacing, -0.013rem);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-1, 0.25rem);
+    font-family: var(--font-family-primary);
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.375rem; /* 22px */
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: var(--space-1); /* 4px */
 }
 
 </style>
@@ -1287,7 +1421,7 @@ body {
                     <p id="page-subtitle">Exact 2G/3G/4G RF Tables Calculation</p>
                 </div>
                 <div class="header-actions">
-                    <button class="btn btn-secondary" onclick="document.querySelector('.nav-item[data-tab=\'upload-zone\']').click()">
+                    <button class="btn btn-secondary" onclick="document.querySelector('.nav-item[data-tab=\'upload-zone\']').click()" style="padding: 0.625rem 0.875rem; font-size: 0.88rem;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                         Upload New Excel
                     </button>
@@ -1296,18 +1430,16 @@ body {
 
             <!-- TAB 1: EXACT 2G, 3G, 4G BENCHMARK TABLES -->
             <section id="tab-exact-tables" class="tab-pane active">
-                <!-- Alert Banner for Worst Performer -->
-                <div class="alert-card alert-danger" id="worst-op-banner">
+                <!-- Alert Banner for Worst Performer (Shown after user uploads data & calculation completes) -->
+                <div class="alert-card alert-danger" id="worst-op-banner" style="display:none; margin-bottom: 1.25rem;">
                     <div class="alert-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                     </div>
                     <div class="alert-body">
                         <h3>Critical Event Summary: Worst-Performing Operator</h3>
-                        <p id="worst-op-desc"><strong>AIRTEL</strong> ranks as the worst-performing network provider in Kubwa (78.65% compliance), suffering from severe 4G LTE coverage craters (44.3% fail) and RSRQ interference degradation (49.6% fail).</p>
+                        <p id="worst-op-desc"></p>
                     </div>
-                    <div class="alert-tag" id="worst-op-tag">
-                        AIRTEL (78.65%)
-                    </div>
+                    <div class="alert-tag" id="worst-op-tag"></div>
                 </div>
 
                 <!-- Export Bar -->
@@ -1316,11 +1448,11 @@ body {
                         <strong style="color:var(--text-primary)">Benchmark Tables Output</strong> — View or export the exact 2G, 3G, and 4G compliance matrices.
                     </div>
                     <div style="display:flex; gap:0.5rem;">
-                        <button class="btn btn-sm btn-secondary" onclick="exportTablesToCSV()">
+                        <button class="btn btn-sm btn-secondary" onclick="exportTablesToCSV()" style="padding: 0.625rem 0.875rem; font-size: 0.88rem;">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                             Export as CSV
                         </button>
-                        <button class="btn btn-sm btn-primary" onclick="exportTablesToExcel()">
+                        <button class="btn btn-sm btn-primary" onclick="exportTablesToExcel()" style="padding: 0.625rem 0.875rem; font-size: 0.88rem; border: 0.0625rem solid transparent;">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                             Export as Excel (.xlsx)
                         </button>
@@ -1425,8 +1557,9 @@ body {
                             <input type="password" id="api-key-input" class="form-control" placeholder="Enter your free API key...">
                         </div>
 
-                        <div class="control-group flex-end">
-                            <button class="btn btn-primary" id="btn-run-rag" onclick="generateReport()">
+                        <div class="control-group">
+                            <label style="visibility:hidden; user-select:none;">Action:</label>
+                            <button class="btn btn-primary" id="btn-run-rag" onclick="generateReport()" style="width:100%; justify-content:center; padding: 0.625rem 0.875rem; font-size: 0.88rem; border: 0.0625rem solid transparent;">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                                 Generate Full RNO Audit Report
                             </button>
@@ -2110,10 +2243,17 @@ function updateWorstPerformerBanner() {
     const sorted = Object.entries(opScores).sort((a, b) => a[1] - b[1]);
     if (sorted.length > 0) {
         const worst = sorted[0];
-        document.getElementById("worst-op-tag").innerText = `${worst[0]} (${worst[1].toFixed(1)}%)`;
-        document.getElementById("worst-op-desc").innerHTML = `
-            <strong>${worst[0]}</strong> has been identified as the worst-performing network provider from the drive test data with an overall compliance score of <strong>${worst[1].toFixed(1)}%</strong>.
-        `;
+        const banner = document.getElementById("worst-op-banner");
+        const tag = document.getElementById("worst-op-tag");
+        const desc = document.getElementById("worst-op-desc");
+        
+        if (tag) tag.innerText = `${worst[0]} (${worst[1].toFixed(1)}%)`;
+        if (desc) {
+            desc.innerHTML = `
+                <strong>${worst[0]}</strong> has been identified as the worst-performing network provider from the drive test data with an overall compliance score of <strong>${worst[1].toFixed(1)}%</strong> across 2G, 3G, and 4G benchmarks.
+            `;
+        }
+        if (banner) banner.style.display = "flex";
     }
 }
 
@@ -2281,7 +2421,7 @@ function createProgressionLineChart(canvasId, chartData) {
             scales: {
                 x: {
                     grid: { color: 'rgba(17, 24, 39, 0.08)' },
-                    ticks: { color: '#6b7280', font: { family: 'Roboto', weight: 600, size: '0.6875rem' } }
+                    ticks: { color: '#6b7280', font: { family: 'Bricolage Grotesque', weight: 600, size: '0.6875rem' } }
                 },
                 y: {
                     min: 0,
@@ -2300,14 +2440,14 @@ function createProgressionLineChart(canvasId, chartData) {
                         boxWidth: 14,
                         padding: 12,
                         color: '#4B5563',
-                        font: { size: '0.6875rem', family: 'Roboto', weight: 600 }
+                        font: { size: '0.6875rem', family: 'Bricolage Grotesque', weight: 600 }
                     }
                 },
                 tooltip: {
                     backgroundColor: 'rgba(255, 255, 255, 0.95)',
                     titleColor: '#111827',
                     bodyColor: '#111827',
-                    titleFont: { family: 'Roboto', weight: 700 },
+                    titleFont: { family: 'Bricolage Grotesque', weight: 700 },
                     bodyFont: { family: 'JetBrains Mono' },
                     borderColor: 'rgba(17, 24, 39, 0.5)',
                     borderWidth: 1,
