@@ -12,9 +12,9 @@ When building a telecom analytics platform, the initial instinct is to rely on s
 When inspecting the environment, I discovered that neither pandas nor openpyxl was installed. Furthermore, the environment lacked administrator privileges and direct internet access to install external packages via pip. Relying on heavy external libraries meant that most field engineers would not even be able to start the application.
 
 ### The Alternative Solution
-Instead of trying to force third-party dependencies into the environment, I looked into the internal structure of modern spreadsheet files. Because Microsoft Excel (.xlsx) files are essentially zipped collections of XML documents, I wrote a custom parser using only the Python standard library modules zipfile and xml.etree.ElementTree.
+Instead of trying to force third-party dependencies into the environment, I looked into the internal structure of modern spreadsheet files. Because Microsoft Excel (.xlsx) files are essentially zipped collections of XML documents, I wrote a custom parser using only the Python standard library modules `zipfile` and `xml.etree.ElementTree`.
 
-By streaming xl/worksheets/sheet1.xml directly and extracting values from the relevant cell tags, the parser achieved several major benefits:
+By streaming `xl/worksheets/sheet1.xml` directly and extracting values from the relevant cell tags, the parser achieved several major benefits:
 - Zero external dependencies: The entire ingestion pipeline runs on standard Python 3.8 and even inside bundled vendor Python interpreters without installing a single package.
 - Dramatically reduced memory footprint: Parsing XML directly avoided the large memory overhead that pandas dataframes introduce when handling tens of thousands of measurement samples.
 - Instant startup: Execution time dropped because there are no heavy modules to import.
@@ -59,9 +59,9 @@ Once an audit is complete, the results must be shared with department managers, 
 Exporting static PDF documents was also unsatisfactory because stakeholders wanted interactive tables, sortable columns, and dynamic distribution charts.
 
 ### The Alternative Solution
-I created an automated dashboard compiler in build_standalone_dashboard.py.
+I created an automated dashboard compiler in `build_standalone_dashboard.py`.
 
-This script reads the application template, inlines all typography and design tokens, injects the processed KPI datasets as JSON constants directly into the client-side JavaScript, and produces a single self-contained file (Telecom_RNO_Dashboard.html).
+This script reads the application template, inlines all typography and design tokens, injects the processed KPI datasets as JSON constants directly into the client-side JavaScript, and produces a single self-contained file (`Telecom_RNO_Dashboard.html`).
 
 The resulting file can be sent as an email attachment and opened directly in any browser on any device. It preserves all interactive features, including Chart.js visualisations and tab navigation, with no web server or internet connection required.
 
@@ -73,7 +73,7 @@ The resulting file can be sent as an email attachment and opened directly in any
 During testing, engineers wanted to drop multiple heavy spreadsheet workbooks into the interface and receive immediate feedback without waiting for server uploads or dealing with upload size limits.
 
 ### The Alternative Solution
-I implemented a dual processing path in web/app.js. By integrating SheetJS and JSZip directly into the browser runtime, the client can parse Excel files locally in browser memory. The frontend computes cumulative pass rates, updates the 2G, 3G, and 4G tables, and recalculates the visual progression charts entirely client-side, while still allowing server-side persistence when the local backend is running.
+I implemented a dual processing path in `web/app.js`. By integrating SheetJS and JSZip directly into the browser runtime, the client can parse Excel files locally in browser memory. The frontend computes cumulative pass rates, updates the 2G, 3G, and 4G tables, and recalculates the visual progression charts entirely client-side, while still allowing server-side persistence when the local backend is running.
 
 ---
 
@@ -83,7 +83,7 @@ I implemented a dual processing path in web/app.js. By integrating SheetJS and J
 Early dashboard iterations had fragmented styling, mismatched colour schemes for operators, and hard-coded font properties. This made the application feel like a collection of disparate scripts rather than a cohesive engineering product.
 
 ### The Alternative Solution
-I established a design token workflow. I mapped tokens from design-tokens.tokens.json into CSS custom properties in tokens/typography.css and web/index.css. This gave the dashboard a unified visual identity:
+I established a design token workflow. I mapped tokens from `design-tokens.tokens.json` into CSS custom properties in `tokens/typography.css` and `web/index.css`. This gave the dashboard a unified visual identity:
 - Standardised brand colours for each operator (MTN Yellow, Airtel Red, Glo Green, 9mobile Lime).
 - A clear typography scale using modern typefaces (Roboto and JetBrains Mono).
 - Consistent elevation layers, card borders, and responsive grid layouts.
